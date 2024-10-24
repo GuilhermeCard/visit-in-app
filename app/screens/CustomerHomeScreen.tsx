@@ -1,10 +1,10 @@
-import React, { useState } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import { VStack } from 'native-base';
 
 export default function CustomerHomeScreen() {
   return (

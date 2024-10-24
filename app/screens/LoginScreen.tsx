@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,15 +5,16 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+// import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
 
 export default function LoginScreen() {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
 
   function save() {
-    navigation.navigate("BottomTabComponent") 
+    navigation.navigate("customerHomeScreen");
   }
 
   return (
@@ -38,26 +38,24 @@ export default function LoginScreen() {
           secureTextEntry={!passwordVisible}
         />
         <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)}>
-          <Icon
+          {/* <Icon
             name={passwordVisible ? 'eye' : 'eye-off'}
             size={24}
             color="#AAA"
-          />
+          /> */}
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.signInButton}>
-        <Text 
-        style={styles.signInButtonText}
-        onPress={save}
+      <TouchableOpacity style={styles.signInButton} onPress={() => save()}>
+        <Text
+          style={styles.signInButtonText}
         >Sign In</Text>
       </TouchableOpacity>
 
-      <Text style={styles.footerText}>
+      <Text style={styles.footerText} onPress={() => navigation.navigate('registerScreen')}>
         Don't have an account?{' '}
         <Text
           style={styles.signUpText}
-          onPress={() => navigation.navigate('Register')}
         >
           Sign Up here
         </Text>

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   Alert,
   View,
@@ -7,12 +6,12 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Picker } from "@react-native-picker/picker";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
 export default function RegisterScreen() {
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
 
   const [selectedType, setSelectedType] = useState("default");
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -25,10 +24,10 @@ export default function RegisterScreen() {
       [
         {
           text: "OK",
-          onPress: () => navigation.navigate("Login") // Navegar após clicar em OK
+          onPress: () => navigation.navigate("loginScreen") 
         }
       ],
-      { cancelable: false } // Opcional: define se o alerta pode ser fechado ao tocar fora dele
+      { cancelable: false } 
     );
   }
 
@@ -49,7 +48,7 @@ export default function RegisterScreen() {
 
       if (response.ok) {
         // Navegar para a tela de login em caso de sucesso
-        navigation.navigate("Login"); // Substitua 'Login' pelo nome correto da sua tela de login
+        navigation.navigate("login"); // Substitua 'Login' pelo nome correto da sua tela de login
       } else {
         // Tratar erro, exibir mensagem para o usuário
         Alert.alert("Erro", data.message || "Ocorreu um erro ao registrar.");
@@ -76,7 +75,7 @@ export default function RegisterScreen() {
           onValueChange={(itemValue) => setSelectedType(itemValue)}
           style={styles.picker}
           dropdownIconColor="#AAA" // Personaliza a cor do ícone de dropdown
-          placeholderTextColor="#AAA"
+          // placeholderTextColor="#AAA"
         >
           <Picker.Item label="Select your register type" value="default" />
           <Picker.Item label="Customer" value="CUSTOMER" />
@@ -103,11 +102,11 @@ export default function RegisterScreen() {
           secureTextEntry={!passwordVisible}
         />
         <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)}>
-          <Icon
+          {/* <Icon
             name={passwordVisible ? "eye" : "eye-off"}
             size={24}
             color="#AAA"
-          />
+          /> */}
         </TouchableOpacity>
       </View>
 
@@ -120,11 +119,11 @@ export default function RegisterScreen() {
         <TouchableOpacity
           onPress={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
         >
-          <Icon
+          {/* <Icon
             name={confirmPasswordVisible ? "eye" : "eye-off"}
             size={24}
             color="#AAA"
-          />
+          /> */}
         </TouchableOpacity>
       </View>
 
