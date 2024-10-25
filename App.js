@@ -1,10 +1,13 @@
 import { NativeBaseProvider } from 'native-base';
-import {Routes} from './src/routes'
+import { Routes } from './src/routes'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
-export default () =>  {
+export default () => {
   return (
     <NativeBaseProvider>
-      <Routes />
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'red' }}>
+        <Routes />
+      </SafeAreaView>
     </NativeBaseProvider>
   );
 }

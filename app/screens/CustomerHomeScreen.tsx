@@ -1,32 +1,34 @@
+import { useNavigation } from '@react-navigation/native';
 import {
-  View,
+  StyleSheet,
   Text,
   TouchableOpacity,
-  StyleSheet,
+  View,
 } from "react-native";
-import { VStack } from 'native-base';
 
 export default function CustomerHomeScreen() {
+  const navigation: any = useNavigation();
   return (
-    <View style={styles.container}>
-      <Text style={styles.logo}>
-        <Text style={styles.highlight}>Visit-in</Text>
-      </Text>
 
-      <Text style={styles.title}>
-        Have you already <Text style={styles.checkinText}>Check-in?</Text>
-      </Text>
+      <View style={styles.container}>
+        <Text style={styles.logo}>
+          <Text style={styles.highlight}>Visit-in</Text>
+        </Text>
 
-      <TouchableOpacity style={styles.checkinButton}>
-        <Text style={styles.checkinButtonText}>Check-in</Text>
-      </TouchableOpacity>
-    </View>
+        <Text style={styles.title}>
+          Have you already <Text style={styles.checkinText}>Check-in?</Text>
+        </Text>
+
+        <TouchableOpacity style={styles.checkinButton} onPress={() => navigation.navigate('checkinScreen')}>
+          <Text style={styles.checkinButtonText}>Check-in</Text>
+        </TouchableOpacity>
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     flexDirection: "column",
     justifyContent: "space-around",
     backgroundColor: "#0A0E17",

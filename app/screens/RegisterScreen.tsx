@@ -9,6 +9,7 @@ import {
 import { Picker } from "@react-native-picker/picker";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function RegisterScreen() {
   const navigation: any = useNavigation();
@@ -48,7 +49,7 @@ export default function RegisterScreen() {
 
       if (response.ok) {
         // Navegar para a tela de login em caso de sucesso
-        navigation.navigate("login"); // Substitua 'Login' pelo nome correto da sua tela de login
+        navigation.navigate("loginScreen"); // Substitua 'Login' pelo nome correto da sua tela de login
       } else {
         // Tratar erro, exibir mensagem para o usuário
         Alert.alert("Erro", data.message || "Ocorreu um erro ao registrar.");
@@ -74,7 +75,7 @@ export default function RegisterScreen() {
           selectedValue={selectedType}
           onValueChange={(itemValue) => setSelectedType(itemValue)}
           style={styles.picker}
-          dropdownIconColor="#AAA" // Personaliza a cor do ícone de dropdown
+          dropdownIconColor="#AAA" 
           // placeholderTextColor="#AAA"
         >
           <Picker.Item label="Select your register type" value="default" />
@@ -102,11 +103,11 @@ export default function RegisterScreen() {
           secureTextEntry={!passwordVisible}
         />
         <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)}>
-          {/* <Icon
+          <Icon
             name={passwordVisible ? "eye" : "eye-off"}
             size={24}
             color="#AAA"
-          /> */}
+          />
         </TouchableOpacity>
       </View>
 

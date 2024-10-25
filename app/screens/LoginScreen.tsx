@@ -1,20 +1,23 @@
+import { StackActions, useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
 import {
-  View,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
+  View,
 } from 'react-native';
-// import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function LoginScreen() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigation: any = useNavigation();
 
   function save() {
-    navigation.navigate("customerHomeScreen");
+    // navigation.navigate("home");
+    navigation.dispatch(
+      StackActions.replace('home')
+    );
   }
 
   return (
@@ -38,11 +41,11 @@ export default function LoginScreen() {
           secureTextEntry={!passwordVisible}
         />
         <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)}>
-          {/* <Icon
+          <Icon
             name={passwordVisible ? 'eye' : 'eye-off'}
             size={24}
             color="#AAA"
-          /> */}
+          />
         </TouchableOpacity>
       </View>
 
@@ -66,9 +69,9 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#0A0E17',
+    flexGrow: 1,
     justifyContent: 'center',
+    backgroundColor: '#0A0E17',
     padding: 20,
   },
   title: {
