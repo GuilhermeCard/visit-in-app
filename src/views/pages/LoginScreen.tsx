@@ -1,23 +1,20 @@
-import { StackActions, useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { StackActions, useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 import {
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+} from "react-native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default function LoginScreen() {
-  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigation: any = useNavigation();
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
-  function save() {
-    // navigation.navigate("home");
-    navigation.dispatch(
-      StackActions.replace('home')
-    );
+  function login() {
+    navigation.dispatch(StackActions.replace("home"));
   }
 
   return (
@@ -36,32 +33,30 @@ export default function LoginScreen() {
 
       <View style={styles.passwordContainer}>
         <TextInput
+          style={{ flexGrow: 1 }}
           placeholder="Password"
           placeholderTextColor="#AAA"
           secureTextEntry={!passwordVisible}
         />
         <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)}>
           <Icon
-            name={passwordVisible ? 'eye' : 'eye-off'}
+            name={passwordVisible ? "eye" : "eye-off"}
             size={24}
             color="#AAA"
           />
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.signInButton} onPress={() => save()}>
-        <Text
-          style={styles.signInButtonText}
-        >Sign In</Text>
+      <TouchableOpacity style={styles.signInButton} onPress={() => login()}>
+        <Text style={styles.signInButtonText}>Sign In</Text>
       </TouchableOpacity>
 
-      <Text style={styles.footerText} onPress={() => navigation.navigate('registerScreen')}>
-        Don't have an account?{' '}
-        <Text
-          style={styles.signUpText}
-        >
-          Sign Up here
-        </Text>
+      <Text
+        style={styles.footerText}
+        onPress={() => navigation.navigate("registerScreen")}
+      >
+        Don't have an account?{" "}
+        <Text style={styles.signUpText}>Sign Up here</Text>
       </Text>
     </View>
   );
@@ -70,59 +65,59 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    justifyContent: 'center',
-    backgroundColor: '#0A0E17',
+    justifyContent: "center",
+    backgroundColor: "#0A0E17",
     padding: 20,
   },
   title: {
-    color: '#FFF',
+    color: "#FFF",
     fontSize: 32,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
-    textAlign: 'center',
+    textAlign: "center",
   },
   subtitle: {
-    color: '#FFF',
+    color: "#FFF",
     fontSize: 16,
     marginBottom: 30,
-    textAlign: 'center',
+    textAlign: "center",
   },
   input: {
-    backgroundColor: '#F5F6FA',
+    backgroundColor: "#F5F6FA",
     borderRadius: 8,
     paddingHorizontal: 16,
     height: 50,
     marginBottom: 20,
   },
   passwordContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#F5F6FA',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "#F5F6FA",
     borderRadius: 8,
     paddingHorizontal: 16,
     height: 50,
   },
   signInButton: {
-    backgroundColor: '#C13584',
+    backgroundColor: "#C13584",
     borderRadius: 8,
     paddingVertical: 15,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 20,
   },
   signInButtonText: {
-    color: '#FFF',
+    color: "#FFF",
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   footerText: {
-    color: '#FFF',
+    color: "#FFF",
     fontSize: 16,
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: 20,
   },
   signUpText: {
-    color: '#C13584',
-    fontWeight: 'bold',
+    color: "#C13584",
+    fontWeight: "bold",
   },
 });

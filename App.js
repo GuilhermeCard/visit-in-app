@@ -1,13 +1,11 @@
-import { NativeBaseProvider } from 'native-base';
-import { Routes } from './src/routes'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { Routes } from "./src/views/routes";
+import { SafeAreaView, StatusBar } from "react-native";
 
 export default () => {
   return (
-    <NativeBaseProvider>
-      <SafeAreaView style={{ flex: 1, backgroundColor: 'red' }}>
-        <Routes />
-      </SafeAreaView>
-    </NativeBaseProvider>
+    <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar barStyle="light-content" backgroundColor="#0A0E17" />
+      <Routes />
+    </SafeAreaView>
   );
-}
+};

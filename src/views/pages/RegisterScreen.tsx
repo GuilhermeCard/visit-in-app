@@ -9,11 +9,10 @@ import {
 import { Picker } from "@react-native-picker/picker";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default function RegisterScreen() {
   const navigation: any = useNavigation();
-
   const [selectedType, setSelectedType] = useState("default");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
@@ -25,10 +24,10 @@ export default function RegisterScreen() {
       [
         {
           text: "OK",
-          onPress: () => navigation.navigate("loginScreen") 
-        }
+          onPress: () => navigation.navigate("loginScreen"),
+        },
       ],
-      { cancelable: false } 
+      { cancelable: false }
     );
   }
 
@@ -75,7 +74,7 @@ export default function RegisterScreen() {
           selectedValue={selectedType}
           onValueChange={(itemValue) => setSelectedType(itemValue)}
           style={styles.picker}
-          dropdownIconColor="#AAA" 
+          dropdownIconColor="#AAA"
           // placeholderTextColor="#AAA"
         >
           <Picker.Item label="Select your register type" value="default" />
@@ -98,6 +97,7 @@ export default function RegisterScreen() {
 
       <View style={styles.passwordContainer}>
         <TextInput
+          style={{ flexGrow: 1 }}
           placeholder="Password"
           placeholderTextColor="#AAA"
           secureTextEntry={!passwordVisible}
@@ -113,6 +113,7 @@ export default function RegisterScreen() {
 
       <View style={styles.passwordContainer}>
         <TextInput
+          style={{ flexGrow: 1 }}
           placeholder="Confirm password"
           placeholderTextColor="#AAA"
           secureTextEntry={!confirmPasswordVisible}
@@ -120,11 +121,11 @@ export default function RegisterScreen() {
         <TouchableOpacity
           onPress={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
         >
-          {/* <Icon
+          <Icon
             name={confirmPasswordVisible ? "eye" : "eye-off"}
             size={24}
             color="#AAA"
-          /> */}
+          />
         </TouchableOpacity>
       </View>
 
