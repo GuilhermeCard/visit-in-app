@@ -1,5 +1,5 @@
-import { Routes } from "./src/views/routes";
 import { SafeAreaView, StatusBar } from "react-native";
+import { Routes } from "./src/routes";
 
 export default () => {
   return (

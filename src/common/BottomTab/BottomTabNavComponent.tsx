@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { TabItem } from "../../models/TabItemModel";
+import { TabItem } from "../../common/BottomTab/TabItemModel";
 
 const Tab = createBottomTabNavigator();
 

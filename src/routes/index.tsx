@@ -1,10 +1,10 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "../pages/LoginScreen";
-import RegisterScreen from "../pages/RegisterScreen";
-import CheckinScreen from "../pages/CheckinScreen";
-import BottomTabNav from "../components/BottomTabNavComponent";
-import useCustomerHomeTabViewModel from "../../viewmodels/CustomerHomeTabViewModel";
+import LoginScreen from "../pages/Login/LoginScreen";
+import RegisterScreen from "../pages/Register/RegisterScreen";
+import CheckinScreen from "../pages/Checkin/CheckinScreen";
+import BottomTabNav from "../common/BottomTab/BottomTabNavComponent";
+import useCustomerHomeTabViewModel from "../pages/CustomerHome/CustomerHomeTabViewModel";
 
 export function Routes() {
   const NativeStack = createNativeStackNavigator();
