@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     FlatList,
     Image,
+    ScrollView,
     StyleSheet,
     Text,
     TextInput,
@@ -17,7 +18,7 @@ const data = [
         isAvailableToClaim: true,
         rewardsUnlocked: 2,
         rewards: 5,
-        image: 'https://scontent.fudi2-1.fna.fbcdn.net/v/t39.30808-6/291457394_556492239231896_5774201754527740980_n.png?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeF0dSF7ox5kqdE3d3QpDwOJPUartNYLxn49Rqu01gvGfuXOiBiYGOSwsjf-WwNw6UvD-stbm8zTxaUvWzwXVN8_&_nc_ohc=5FKEXJgwX_QQ7kNvgEW6WJ_&_nc_zt=23&_nc_ht=scontent.fudi2-1.fna&_nc_gid=AYNn8Y3B6DmhbL0lSmsLEr8&oh=00_AYCChyJgyFZUW3Xtacc9ou8bo1wLQu3WsJbvSahHvAx6eQ&oe=67221D65'
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSblZwl-FG5UcrjeqUCsrZetYW_-3vDCSrJPA&s'
     },
     {
         id: 2,
@@ -26,7 +27,7 @@ const data = [
         isAvailableToClaim: false,
         rewardsUnlocked: 2,
         rewards: 5,
-        image: 'https://scontent.fudi2-1.fna.fbcdn.net/v/t39.30808-6/291457394_556492239231896_5774201754527740980_n.png?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeF0dSF7ox5kqdE3d3QpDwOJPUartNYLxn49Rqu01gvGfuXOiBiYGOSwsjf-WwNw6UvD-stbm8zTxaUvWzwXVN8_&_nc_ohc=5FKEXJgwX_QQ7kNvgEW6WJ_&_nc_zt=23&_nc_ht=scontent.fudi2-1.fna&_nc_gid=AYNn8Y3B6DmhbL0lSmsLEr8&oh=00_AYCChyJgyFZUW3Xtacc9ou8bo1wLQu3WsJbvSahHvAx6eQ&oe=67221D65'
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmx5qOD579syufE11QJsM5lrnh7MAyEQ_C0A&s'
     },
     {
         id: 3,
@@ -68,64 +69,93 @@ const data = [
 
 const CheckinProgressScreen = () => {
 
+    const arrayData = ['Bar Universitário', 'Balada', 'Restaurante', 'Doceria', 'Sorveteria', 'Item 6', 'Item 7', 'Item 8'];
+    const [selectedItems, setSelectedItems] = useState([]);
+
+    const handleItemPress = (index) => {
+        setSelectedItems((prevSelected) =>
+            prevSelected.includes(index)
+                ? prevSelected.filter((item) => item !== index)
+                : [...prevSelected, index]
+        );
+    };
+
     const renderCheckinItem = ({ item }) => (
         <View style={styles.card}>
-            <Image source={{ uri: item.image }} style={styles.image} />
+            <View style={{ flexDirection: 'row' }}>
+                <Image source={{ uri: item.image }} style={styles.image} />
 
-            <View style={styles.infoContainer}>
-                <Text style={styles.titleEstablishment}>{item.name}</Text>
-                <Text style={styles.lastCheckin}>Last check-in {item.lastCheckin}</Text>
-                {item.isAvailableToClaim ? (
-                    <TouchableOpacity style={styles.claimButton}>
-                        <Text style={styles.claimText}>Claim now</Text>
-                    </TouchableOpacity>
-                ) : null}
-            </View>
-            <View >
-                <Text style={styles.titleCheckin}>Check-ins</Text>
-                <Text style={styles.amountCheckin}>5</Text>
 
+                <View style={styles.infoContainer}>
+                    <Text style={styles.titleEstablishment}>{item.name}</Text>
+                    <Text style={styles.lastCheckin}>Last check-in {item.lastCheckin}</Text>
+
+                </View>
+                <View >
+                    <Text style={styles.titleCheckin}>Check-ins</Text>
+                    <Text style={styles.amountCheckin}>5</Text>
+
+                </View>
             </View>
+            {item.isAvailableToClaim ? (
+                <TouchableOpacity style={styles.claimButton}>
+                    <Text style={styles.claimText}>Claim now</Text>
+                </TouchableOpacity>
+            ) : null}
         </View>
     );
 
     return (
-        <View style={styles.container}>
-            <View style={styles.header} >
-                <Text style={styles.title}>Check-ins</Text>
-                <Text style={styles.subtitle}>History of completed check-ins</Text>
+        <>
+            <View style={styles.container}>
+                <View style={styles.header} >
+                    <Text style={styles.title}>Check-ins</Text>
+                    <Text style={styles.subtitle}>History of completed check-ins</Text>
+                </View>
+                <View style={styles.searchContainer}>
+                    <TextInput
+                        style={styles.searchInput}
+                        placeholder="Search all users..."
+                        placeholderTextColor="#999"
+                    />
+                </View>
+                {/* <View style={styles.filterContainer}>
+                <TouchableOpacity style={styles.filterButton}>
+                <Text style={styles.filterText}>All</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.filterButton}>
+                <Text style={styles.filterText}>Owners</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.filterButton}>
+                <Text style={styles.filterText}>Editors</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.filterButton}>
+                <Text style={styles.filterText}>Viewers</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.filterButton}>
+                <Text style={styles.filterText}>Recent</Text>
+                </TouchableOpacity>
+                </View> */}
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    {arrayData.map((item, index) => (
+                        <TouchableOpacity key={index} activeOpacity={0.8} onPress={() => handleItemPress(index)}>
+                            <View style={[styles.filterButton, selectedItems.includes(index) && styles.selectedButton]}>
+                                <Text style={[styles.filterText, selectedItems.includes(index) && styles.selectedText]}>{item}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    ))}
+                </ScrollView>
+
             </View>
-            <View style={styles.searchContainer}>
-                <TextInput
-                    style={styles.searchInput}
-                    placeholder="Search all users..."
-                    placeholderTextColor="#999"
+            <View style={styles.flatList}>
+                <FlatList
+                    data={data}
+                    // style={styles.flatList}
+                    renderItem={renderCheckinItem}
+                    keyExtractor={(item) => item.id.toString()}
                 />
             </View>
-            <View style={styles.filterContainer}>
-                <TouchableOpacity style={styles.filterButton}>
-                    <Text style={styles.filterText}>All</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.filterButton}>
-                    <Text style={styles.filterText}>Owners</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.filterButton}>
-                    <Text style={styles.filterText}>Editors</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.filterButton}>
-                    <Text style={styles.filterText}>Viewers</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.filterButton}>
-                    <Text style={styles.filterText}>Recent</Text>
-                </TouchableOpacity>
-            </View>
-
-            <FlatList
-                data={data}
-                renderItem={renderCheckinItem}
-                keyExtractor={(item) => item.id.toString()}
-            />
-        </View>
+        </>
     );
 };
 
@@ -139,6 +169,9 @@ const styles = StyleSheet.create({
         paddingTop: 6,
         color: '#FFFFFF'
     },
+    selectedItemText: {
+        color: "#c929b0",
+    },
     subtitle: {
         fontSize: 16,
         color: '#909090',
@@ -146,19 +179,24 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     container: {
+        backgroundColor: '#0A0E17',
+        padding: 10
+    },
+    flatList: {
         flex: 1,
         backgroundColor: '#0A0E17',
-        paddingHorizontal: 16,
+        // padding: 12,
+        // marginTop: 10,
     },
     searchContainer: {
         marginVertical: 10,
     },
     searchInput: {
         borderRadius: 16,
-        color: 'white',
+        color: '#ffff',
         padding: 10,
         borderWidth: 1.3,
-        borderColor: 'white',
+        borderColor: '#ffff',
     },
     filterContainer: {
         flexDirection: 'row',
@@ -166,20 +204,30 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     filterButton: {
-        paddingHorizontal: 10,
-        paddingVertical: 6,
-        borderRadius: 20,
-        backgroundColor: 'white',
+        borderRadius: 8,
+        marginRight: 5,
+        // paddingHorizontal: 5,
+        // paddingBottom: 5,
+        backgroundColor: '#ffff',
+        padding: 5,
+        // marginBottom: 12,
+    },
+    selectedButton: {
+        backgroundColor: '#c929b0',
     },
     filterText: {
         color: 'black',
+        alignSelf: 'center',
+    },
+    selectedText: {
+        color: '#ffff',
     },
     card: {
-        flexDirection: 'row',
-        backgroundColor: 'white',
-        padding: 12,
-        borderRadius: 10,
-        marginBottom: 16,
+        backgroundColor: '#ffff',
+        padding: 15,
+        marginTop: 5,
+        borderRadius: 16,
+        // marginBottom: 16,
     },
     image: {
         width: 55,
@@ -212,7 +260,7 @@ const styles = StyleSheet.create({
     },
     claimButton: {
         backgroundColor: '#c929b0',
-        width: '138%',
+        width: '100%',
         padding: 8,
         borderRadius: 9,
         marginTop: 10,
