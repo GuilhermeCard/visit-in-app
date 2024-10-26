@@ -1,3 +1,4 @@
+import { FontAwesome } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
     FlatList,
@@ -9,6 +10,9 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
+import { ProgressCircle } from 'react-native-svg-charts';
+import Icon from 'react-native-vector-icons/Fontisto';
+import ArrowIcon from 'react-native-vector-icons/MaterialIcons';
 
 const data = [
     {
@@ -71,6 +75,7 @@ const CheckinProgressScreen = () => {
 
     const arrayData = ['Bar Universitário', 'Balada', 'Restaurante', 'Doceria', 'Sorveteria', 'Item 6', 'Item 7', 'Item 8'];
     const [selectedItems, setSelectedItems] = useState([]);
+    const [expandedItems, setExpandedItems] = useState({});
 
     const handleItemPress = (index) => {
         setSelectedItems((prevSelected) =>
@@ -80,30 +85,79 @@ const CheckinProgressScreen = () => {
         );
     };
 
-    const renderCheckinItem = ({ item }) => (
-        <View style={styles.card}>
-            <View style={{ flexDirection: 'row' }}>
-                <Image source={{ uri: item.image }} style={styles.image} />
+    const toggleExpand = (id) => {
+        setExpandedItems((prev) => ({
+            ...prev,
+            [id]: !prev[id],
+        }));
+    };
 
+    const renderCheckinItem = ({ item }) => {
+        const isExpanded = expandedItems[item.id];
 
-                <View style={styles.infoContainer}>
-                    <Text style={styles.titleEstablishment}>{item.name}</Text>
-                    <Text style={styles.lastCheckin}>Last check-in {item.lastCheckin}</Text>
+        return (
+            <TouchableOpacity activeOpacity={0.8}>
+                <View style={styles.card}>
 
+                    <View>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Image source={{ uri: item.image }} style={styles.image} />
+                            <View style={styles.infoContainer}>
+                                <Text style={styles.titleEstablishment}>{item.name}</Text>
+                                <Text style={styles.lastCheckin}>Last check-in {item.lastCheckin}</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.titleCheckin}>Check-ins</Text>
+                                <Text style={styles.amountCheckin}>5</Text>
+                            </View>
+
+                        </View>
+
+                        {isExpanded && (
+                            <View style={styles.body}>
+                                <View style={styles.rewards}>
+                                    <View style={styles.rewardItem}>
+                                        <View style={styles.rewardDotUnlocked} />
+                                        <Text style={styles.rewardText}>Rewards unlocked</Text>
+                                    </View>
+                                    <View style={styles.rewardItem}>
+                                        <View style={styles.rewardDot} />
+                                        <Text style={styles.rewardText}>Rewards</Text>
+                                    </View>
+                                </View>
+                                <ProgressCircle
+                                    style={{ height: 60, width: 60}}
+                                    progress={0.35}
+                                    progressColor={'#28b8a6'}
+                                    backgroundColor={'#57636c'}
+                                    strokeWidth={7.5}
+                                >
+                                    <View style={styles.progressContent}>
+                                        <FontAwesome name="trophy" size={20} color="gold" />
+                                        <Text style={styles.progressText}>2/5</Text>
+                                    </View>
+                                </ProgressCircle>
+                            </View>
+
+                        )}
+                        {item.isAvailableToClaim ? (
+                            <TouchableOpacity style={styles.claimButton}>
+                                <Text style={styles.claimText}>Claim now</Text>
+                            </TouchableOpacity>
+                        ) : null}
+                    </View>
+
+                    <TouchableOpacity onPress={() => toggleExpand(item.id)} style={{ alignSelf: 'center' }} >
+                        {isExpanded ?
+                            <ArrowIcon name="keyboard-arrow-down" size={25} color="#999" />
+                            :
+                            <ArrowIcon name="keyboard-arrow-right" size={25} color="#999" />
+                        }
+                    </TouchableOpacity>
                 </View>
-                <View >
-                    <Text style={styles.titleCheckin}>Check-ins</Text>
-                    <Text style={styles.amountCheckin}>5</Text>
-
-                </View>
-            </View>
-            {item.isAvailableToClaim ? (
-                <TouchableOpacity style={styles.claimButton}>
-                    <Text style={styles.claimText}>Claim now</Text>
-                </TouchableOpacity>
-            ) : null}
-        </View>
-    );
+            </TouchableOpacity>
+        );
+    };
 
     return (
         <>
@@ -118,24 +172,8 @@ const CheckinProgressScreen = () => {
                         placeholder="Search all users..."
                         placeholderTextColor="#999"
                     />
+                    <Icon name="search" size={20} color="#999" style={styles.searchIcon} />
                 </View>
-                {/* <View style={styles.filterContainer}>
-                <TouchableOpacity style={styles.filterButton}>
-                <Text style={styles.filterText}>All</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.filterButton}>
-                <Text style={styles.filterText}>Owners</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.filterButton}>
-                <Text style={styles.filterText}>Editors</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.filterButton}>
-                <Text style={styles.filterText}>Viewers</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.filterButton}>
-                <Text style={styles.filterText}>Recent</Text>
-                </TouchableOpacity>
-                </View> */}
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                     {arrayData.map((item, index) => (
                         <TouchableOpacity key={index} activeOpacity={0.8} onPress={() => handleItemPress(index)}>
@@ -145,16 +183,14 @@ const CheckinProgressScreen = () => {
                         </TouchableOpacity>
                     ))}
                 </ScrollView>
+            </View>
+            <FlatList
 
-            </View>
-            <View style={styles.flatList}>
-                <FlatList
-                    data={data}
-                    // style={styles.flatList}
-                    renderItem={renderCheckinItem}
-                    keyExtractor={(item) => item.id.toString()}
-                />
-            </View>
+                data={data}
+                style={styles.flatList}
+                renderItem={renderCheckinItem}
+                keyExtractor={(item) => item.id.toString()}
+            />
         </>
     );
 };
@@ -162,6 +198,58 @@ const CheckinProgressScreen = () => {
 const styles = StyleSheet.create({
     header: {
         padding: 5,
+    },
+    searchIcon: {
+        marginRight: 5,
+    },
+    rewardDotUnlocked: {
+        width: 10,
+        height: 10,
+        borderRadius: 8,
+        backgroundColor: '#28b8a6',
+        marginRight: 8,
+    },
+    rewards: {
+        flexDirection: 'column',
+    },
+    rewardItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    rewardDot: {
+        width: 10,
+        height: 10,
+        borderRadius: 8,
+        backgroundColor: '#ccc',
+        marginRight: 8,
+    },
+    rewardText: {
+        fontSize: 12,
+        color: '#666',
+    },
+    progressContent: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    progressText: {
+        fontSize: 10,
+        color: '#666',
+    },
+    extraDetails: {
+        marginTop: 10,
+        padding: 8,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 8,
+    },
+    body: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 11,
+    },
+    extraText: {
+        color: 'black',
+        fontSize: 14,
     },
     title: {
         fontSize: 30,
@@ -183,20 +271,23 @@ const styles = StyleSheet.create({
         padding: 10
     },
     flatList: {
-        flex: 1,
         backgroundColor: '#0A0E17',
-        // padding: 12,
-        // marginTop: 10,
+        paddingHorizontal: 10,
     },
     searchContainer: {
         marginVertical: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        borderRadius: 16,
+        borderWidth: 1.3,
+        borderColor: 'white',
+        padding: 10,
+        paddingHorizontal: 10,
     },
     searchInput: {
-        borderRadius: 16,
         color: '#ffff',
-        padding: 10,
-        borderWidth: 1.3,
-        borderColor: '#ffff',
+        width: '90%'
     },
     filterContainer: {
         flexDirection: 'row',
@@ -206,11 +297,8 @@ const styles = StyleSheet.create({
     filterButton: {
         borderRadius: 8,
         marginRight: 5,
-        // paddingHorizontal: 5,
-        // paddingBottom: 5,
         backgroundColor: '#ffff',
         padding: 5,
-        // marginBottom: 12,
     },
     selectedButton: {
         backgroundColor: '#c929b0',
@@ -223,20 +311,20 @@ const styles = StyleSheet.create({
         color: '#ffff',
     },
     card: {
+        flexDirection: 'row',
         backgroundColor: '#ffff',
-        padding: 15,
-        marginTop: 5,
+        padding: 16,
+        marginTop: 15,
         borderRadius: 16,
-        // marginBottom: 16,
     },
     image: {
         width: 55,
         height: 55,
         borderRadius: 35,
-        marginRight: 15,
+        marginRight: 10,
     },
     infoContainer: {
-        width: '55%'
+        width: '58%'
     },
     titleEstablishment: {
         color: 'black',

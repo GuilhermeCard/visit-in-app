@@ -66,7 +66,12 @@ const styles = StyleSheet.create({
   qrContainer: {
     justifyContent: "center", // Centraliza verticalmente
     alignItems: "center", // Centraliza horizontalmente
-    backgroundColor: "#FFF",
+    backgroundColor: "#0A0E17",
+    borderRadius: 16,
+    color: '#ffff',
+    padding: 10,
+    borderWidth: 1.3,
+    borderColor: '#ffff',
   },
   checkinButton: {
     backgroundColor: "#C13584",
