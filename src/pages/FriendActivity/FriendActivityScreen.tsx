@@ -184,6 +184,9 @@ const styles = StyleSheet.create({
     color: "#ffff",
     width: "90%",
   },
+  searchIcon: {
+    marginRight: 5,
+  },
   card: {
     // flexDirection: "row",
     backgroundColor: "#FFF",
