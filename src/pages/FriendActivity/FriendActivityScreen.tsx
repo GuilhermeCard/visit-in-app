@@ -130,10 +130,12 @@ export default function FriendActivityScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Friend Activity</Text>
-      <Text style={styles.subHeader}>
-        See what your friends have been up to
-      </Text>
+      <View style={styles.header} >
+        <Text style={styles.title}>Friend Activity</Text>
+        <Text style={styles.subTitle}>
+          See what your friends have been up to
+        </Text>
+      </View>
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
@@ -148,7 +150,7 @@ export default function FriendActivityScreen() {
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
       />
-    </View>
+    </View >
   );
 }
 
@@ -157,17 +159,25 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#0E121A",
     paddingHorizontal: 16,
-    paddingTop: 50,
+    // paddingTop: 50,
   },
   header: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#FFF",
+    // fontSize: 24,
+    // fontWeight: "bold",
+    // color: "#FFF",
+    padding: 5,
   },
-  subHeader: {
-    fontSize: 14,
-    color: "#FFF",
-    marginBottom: 20,
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    paddingTop: 6,
+    color: '#FFFFFF'
+  },
+  subTitle: {
+    fontSize: 16,
+    color: '#FFFFFF',
+    marginTop: 5,
+    fontWeight: 'bold'
   },
   searchContainer: {
     marginVertical: 10,

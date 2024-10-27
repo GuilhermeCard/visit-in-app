@@ -1,4 +1,4 @@
-import { FontAwesome } from '@expo/vector-icons';
+// import { FontAwesome } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
     FlatList,
@@ -11,12 +11,13 @@ import {
     View
 } from 'react-native';
 import { ProgressCircle } from 'react-native-svg-charts';
-import Icon from 'react-native-vector-icons/Fontisto';
+import Icon from "react-native-vector-icons/MaterialIcons";
 import ArrowIcon from 'react-native-vector-icons/MaterialIcons';
+import IconTrophy from 'react-native-vector-icons/Entypo';
 
 const data = [
     {
-        id: 1,
+        id: "1",
         name: 'Forasteiros Steak House ssssssss sss s',
         lastCheckin: '2 hours ago',
         isAvailableToClaim: true,
@@ -25,8 +26,8 @@ const data = [
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSblZwl-FG5UcrjeqUCsrZetYW_-3vDCSrJPA&s'
     },
     {
-        id: 2,
-        name: 'Major Espetaria',
+        id: "2",
+        name: 'Tudo de Bom Bar e Espetaria',
         lastCheckin: '5 hours ago',
         isAvailableToClaim: false,
         rewardsUnlocked: 2,
@@ -34,8 +35,8 @@ const data = [
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmx5qOD579syufE11QJsM5lrnh7MAyEQ_C0A&s'
     },
     {
-        id: 3,
-        name: 'Outback',
+        id: "3",
+        name: 'Outback 123456 12345',
         lastCheckin: 'Yesterday',
         isAvailableToClaim: false,
         rewardsUnlocked: 3,
@@ -43,7 +44,7 @@ const data = [
         image: 'https://scontent.fudi2-1.fna.fbcdn.net/v/t39.30808-6/291457394_556492239231896_5774201754527740980_n.png?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeF0dSF7ox5kqdE3d3QpDwOJPUartNYLxn49Rqu01gvGfuXOiBiYGOSwsjf-WwNw6UvD-stbm8zTxaUvWzwXVN8_&_nc_ohc=5FKEXJgwX_QQ7kNvgEW6WJ_&_nc_zt=23&_nc_ht=scontent.fudi2-1.fna&_nc_gid=AYNn8Y3B6DmhbL0lSmsLEr8&oh=00_AYCChyJgyFZUW3Xtacc9ou8bo1wLQu3WsJbvSahHvAx6eQ&oe=67221D65'
     },
     {
-        id: 4,
+        id: "4",
         name: 'Major Espetaria',
         lastCheckin: '5 hours ago',
         isAvailableToClaim: false,
@@ -52,7 +53,7 @@ const data = [
         image: 'https://scontent.fudi2-1.fna.fbcdn.net/v/t39.30808-6/291457394_556492239231896_5774201754527740980_n.png?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeF0dSF7ox5kqdE3d3QpDwOJPUartNYLxn49Rqu01gvGfuXOiBiYGOSwsjf-WwNw6UvD-stbm8zTxaUvWzwXVN8_&_nc_ohc=5FKEXJgwX_QQ7kNvgEW6WJ_&_nc_zt=23&_nc_ht=scontent.fudi2-1.fna&_nc_gid=AYNn8Y3B6DmhbL0lSmsLEr8&oh=00_AYCChyJgyFZUW3Xtacc9ou8bo1wLQu3WsJbvSahHvAx6eQ&oe=67221D65'
     },
     {
-        id: 5,
+        id: "5",
         name: 'Major Espetaria',
         lastCheckin: '5 hours ago',
         isAvailableToClaim: false,
@@ -61,7 +62,7 @@ const data = [
         image: 'https://scontent.fudi2-1.fna.fbcdn.net/v/t39.30808-6/291457394_556492239231896_5774201754527740980_n.png?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeF0dSF7ox5kqdE3d3QpDwOJPUartNYLxn49Rqu01gvGfuXOiBiYGOSwsjf-WwNw6UvD-stbm8zTxaUvWzwXVN8_&_nc_ohc=5FKEXJgwX_QQ7kNvgEW6WJ_&_nc_zt=23&_nc_ht=scontent.fudi2-1.fna&_nc_gid=AYNn8Y3B6DmhbL0lSmsLEr8&oh=00_AYCChyJgyFZUW3Xtacc9ou8bo1wLQu3WsJbvSahHvAx6eQ&oe=67221D65'
     },
     {
-        id: 6,
+        id: "6",
         name: 'Major Espetaria',
         lastCheckin: '5 hours ago',
         isAvailableToClaim: false,
@@ -98,7 +99,6 @@ const CheckinProgressScreen = () => {
         return (
             <TouchableOpacity activeOpacity={0.8}>
                 <View style={styles.card}>
-
                     <View>
                         <View style={{ flexDirection: 'row' }}>
                             <Image source={{ uri: item.image }} style={styles.image} />
@@ -126,14 +126,14 @@ const CheckinProgressScreen = () => {
                                     </View>
                                 </View>
                                 <ProgressCircle
-                                    style={{ height: 60, width: 60}}
+                                    style={{ height: 60, width: 60 }}
                                     progress={0.35}
                                     progressColor={'#28b8a6'}
                                     backgroundColor={'#57636c'}
                                     strokeWidth={7.5}
                                 >
                                     <View style={styles.progressContent}>
-                                        <FontAwesome name="trophy" size={20} color="gold" />
+                                        <IconTrophy name="trophy" size={20} color="gold" />
                                         <Text style={styles.progressText}>2/5</Text>
                                     </View>
                                 </ProgressCircle>
@@ -147,11 +147,11 @@ const CheckinProgressScreen = () => {
                         ) : null}
                     </View>
 
-                    <TouchableOpacity onPress={() => toggleExpand(item.id)} style={{ alignSelf: 'center' }} >
+                    <TouchableOpacity onPress={() => toggleExpand(item.id)} style={{ justifyContent: 'center' }} >
                         {isExpanded ?
-                            <ArrowIcon name="keyboard-arrow-down" size={25} color="#999" />
+                            <ArrowIcon name="keyboard-arrow-down" size={30} color="#999" />
                             :
-                            <ArrowIcon name="keyboard-arrow-right" size={25} color="#999" />
+                            <ArrowIcon name="keyboard-arrow-right" size={30} color="#999" />
                         }
                     </TouchableOpacity>
                 </View>
@@ -174,9 +174,9 @@ const CheckinProgressScreen = () => {
                     />
                     <Icon name="search" size={20} color="#999" style={styles.searchIcon} />
                 </View>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <ScrollView style={{ marginBottom: 10 }} horizontal showsHorizontalScrollIndicator={false}>
                     {arrayData.map((item, index) => (
-                        <TouchableOpacity key={index} activeOpacity={0.8} onPress={() => handleItemPress(index)}>
+                        <TouchableOpacity style={{ paddingHorizontal: 3}} key={index} activeOpacity={0.8} onPress={() => handleItemPress(index)}>
                             <View style={[styles.filterButton, selectedItems.includes(index) && styles.selectedButton]}>
                                 <Text style={[styles.filterText, selectedItems.includes(index) && styles.selectedText]}>{item}</Text>
                             </View>
@@ -185,11 +185,11 @@ const CheckinProgressScreen = () => {
                 </ScrollView>
             </View>
             <FlatList
-
+                style={{ backgroundColor: '#0A0E17', flex: 1, paddingHorizontal: 16}}
+                showsVerticalScrollIndicator={false}
                 data={data}
-                style={styles.flatList}
                 renderItem={renderCheckinItem}
-                keyExtractor={(item) => item.id.toString()}
+                keyExtractor={(item) => item.id}
             />
         </>
     );
@@ -203,8 +203,8 @@ const styles = StyleSheet.create({
         marginRight: 5,
     },
     rewardDotUnlocked: {
-        width: 10,
-        height: 10,
+        width: 14,
+        height: 14,
         borderRadius: 8,
         backgroundColor: '#28b8a6',
         marginRight: 8,
@@ -217,15 +217,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     rewardDot: {
-        width: 10,
-        height: 10,
+        width: 14,
+        height: 14,
         borderRadius: 8,
         backgroundColor: '#ccc',
         marginRight: 8,
     },
     rewardText: {
-        fontSize: 12,
-        color: '#666',
+        fontSize: 12.5,
+        color: 'black',
     },
     progressContent: {
         alignItems: 'center',
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
     },
     progressText: {
         fontSize: 10,
-        color: '#666',
+        color: 'black',
     },
     extraDetails: {
         marginTop: 10,
@@ -262,13 +262,15 @@ const styles = StyleSheet.create({
     },
     subtitle: {
         fontSize: 16,
-        color: '#909090',
+        color: '#FFFFFF',
         marginTop: 5,
         fontWeight: 'bold'
     },
     container: {
+        // flex: 1,
         backgroundColor: '#0A0E17',
-        padding: 10
+        // padding: 10,
+        paddingHorizontal: 16,
     },
     flatList: {
         backgroundColor: '#0A0E17',
@@ -289,16 +291,10 @@ const styles = StyleSheet.create({
         color: '#ffff',
         width: '90%'
     },
-    filterContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 20,
-    },
     filterButton: {
-        borderRadius: 8,
-        marginRight: 5,
+        borderRadius: 6,
         backgroundColor: '#ffff',
-        padding: 5,
+        padding: 3
     },
     selectedButton: {
         backgroundColor: '#c929b0',
@@ -314,7 +310,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#ffff',
         padding: 16,
-        marginTop: 15,
+        marginBottom: 15,
         borderRadius: 16,
     },
     image: {
@@ -324,7 +320,8 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     infoContainer: {
-        width: '58%'
+        marginRight: 4,
+        width: '55%'
     },
     titleEstablishment: {
         color: 'black',
@@ -348,7 +345,8 @@ const styles = StyleSheet.create({
     },
     claimButton: {
         backgroundColor: '#c929b0',
-        width: '100%',
+        width: '95%',
+        marginLeft: '3.5%',
         padding: 8,
         borderRadius: 9,
         marginTop: 10,
