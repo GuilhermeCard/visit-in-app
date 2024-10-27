@@ -22,11 +22,12 @@ type FriendActivity = {
 const activities: FriendActivity[] = [
   {
     id: "1",
-    name: "Sarah Johnson aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    time: "2 hours ago aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    name: "Sarah Johnson",
+    time: "2 hours ago",
     action: "Check-in",
-    location: "Forasteiros Steak House aaaaaaaaaaaaa aaaaaaaaaaaaaa",
-    avatar: "https://via.placeholder.com/50",
+    location: "Forasteiros Steak House",
+    avatar:
+      "https://images.unsplash.com/photo-1606772360683-c8f35e39d90d?w=500&h=500",
   },
   {
     id: "2",
@@ -34,7 +35,8 @@ const activities: FriendActivity[] = [
     time: "5 hours ago",
     action: "Check-in",
     location: "Major Espetaria",
-    avatar: "https://via.placeholder.com/50",
+    avatar:
+      "https://images.unsplash.com/photo-1609010697446-11f2155278f0?w=500&h=500",
   },
   {
     id: "3",
@@ -42,7 +44,8 @@ const activities: FriendActivity[] = [
     time: "Yesterday",
     action: "Check-in",
     location: "Tudo de Bão Bar e Petiscaria",
-    avatar: "https://via.placeholder.com/50",
+    avatar:
+      "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=500&h=500",
   },
   {
     id: "4",
@@ -50,31 +53,17 @@ const activities: FriendActivity[] = [
     time: "2 days ago",
     action: "Claimed",
     location: "Outback Steak House",
-    avatar: "https://via.placeholder.com/50",
+    avatar:
+      "https://images.unsplash.com/photo-1579463148228-138296ac3b98?w=500&h=500",
   },
   {
     id: "5",
-    name: "Alex Rodriguez",
+    name: "Olivia Parker",
     time: "2 days ago",
     action: "Claimed",
     location: "Outback Steak House",
-    avatar: "https://via.placeholder.com/50",
-  },
-  {
-    id: "6",
-    name: "Alex Rodriguez",
-    time: "2 days ago",
-    action: "Claimed",
-    location: "Outback Steak House",
-    avatar: "https://via.placeholder.com/50",
-  },
-  {
-    id: "7",
-    name: "Alex Rodriguez",
-    time: "2 days ago",
-    action: "Claimed",
-    location: "Outback Steak House",
-    avatar: "https://via.placeholder.com/50",
+    avatar:
+      "https://images.unsplash.com/photo-1613378736616-96c5cef4e27d?w=500&h=500",
   },
 ];
 
@@ -157,7 +146,7 @@ export default function FriendActivityScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0E121A",
+    backgroundColor: "#0A0E17",
     paddingHorizontal: 16,
     // paddingTop: 50,
   },
