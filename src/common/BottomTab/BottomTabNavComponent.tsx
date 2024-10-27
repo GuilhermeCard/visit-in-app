@@ -18,8 +18,12 @@ export default function BottomTabNav(tabs: TabItem[]) {
           name={tab.name}
           component={tab.component}
           options={{
-            tabBarIcon: () => (
-              <Icon name={tab.iconName} size={30} color="#FFF" />
+            tabBarIcon: ({ focused }) => (
+              <Icon
+                name={tab.iconName}
+                size={30}
+                color={focused ? "#FFF" : "#ccc"}
+              />
             ),
             tabBarShowLabel: false,
           }}

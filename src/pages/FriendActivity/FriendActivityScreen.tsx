@@ -94,7 +94,7 @@ export default function FriendActivityScreen() {
           style={{
             color: item.action === "Check-in" ? "#28b8a6" : "#e5de84",
             fontWeight: "500",
-            marginRight: 16,
+            width: "20%",
           }}
         >
           {item.action}
@@ -119,7 +119,7 @@ export default function FriendActivityScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header} >
+      <View style={styles.header}>
         <Text style={styles.title}>Friend Activity</Text>
         <Text style={styles.subTitle}>
           See what your friends have been up to
@@ -139,7 +139,7 @@ export default function FriendActivityScreen() {
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
       />
-    </View >
+    </View>
   );
 }
 
@@ -148,25 +148,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#0A0E17",
     paddingHorizontal: 16,
-    // paddingTop: 50,
   },
   header: {
-    // fontSize: 24,
-    // fontWeight: "bold",
-    // color: "#FFF",
     padding: 5,
   },
   title: {
     fontSize: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     paddingTop: 6,
-    color: '#FFFFFF'
+    color: "#FFFFFF",
   },
   subTitle: {
     fontSize: 16,
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     marginTop: 5,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   searchContainer: {
     marginVertical: 10,
@@ -187,7 +183,6 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   card: {
-    // flexDirection: "row",
     backgroundColor: "#FFF",
     borderRadius: 16,
     padding: 16,
@@ -214,11 +209,8 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   statusRow: {
-    width: "65%",
     flexDirection: "row",
-    alignItems: "center",
     paddingTop: 10,
-    // paddingLeft: 10,
   },
   location: {
     fontSize: 14,

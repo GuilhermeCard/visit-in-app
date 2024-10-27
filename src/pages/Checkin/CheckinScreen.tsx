@@ -26,19 +26,18 @@ export default function CheckinScreen() {
       </View>
 
       <View>
-        <TouchableOpacity style={styles.checkinButton}>
-          <Text style={styles.checkinButtonText} onPress={() => handleShare()}>
-            Share code
-          </Text>
+        <TouchableOpacity
+          style={styles.checkinButton}
+          onPress={() => handleShare()}
+        >
+          <Text style={styles.checkinButtonText}>Share code</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.checkinButton}>
-          <Text
-            style={styles.checkinButtonText}
-            onPress={() => handleRegenerate()}
-          >
-            Regenerate code
-          </Text>
+        <TouchableOpacity
+          style={styles.checkinButton}
+          onPress={() => handleRegenerate()}
+        >
+          <Text style={styles.checkinButtonText}>Regenerate code</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -64,14 +63,14 @@ const styles = StyleSheet.create({
     color: "#C13584",
   },
   qrContainer: {
-    justifyContent: "center", // Centraliza verticalmente
-    alignItems: "center", // Centraliza horizontalmente
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: "#0A0E17",
     borderRadius: 16,
-    color: '#ffff',
+    color: "#ffff",
     padding: 10,
     borderWidth: 1.3,
-    borderColor: '#ffff',
+    borderColor: "#ffff",
   },
   checkinButton: {
     backgroundColor: "#C13584",
