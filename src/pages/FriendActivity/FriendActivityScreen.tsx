@@ -84,35 +84,35 @@ export default function FriendActivityScreen() {
         </View>
       </View>
       <View style={styles.statusRow}>
-        <Icon
-          name={item.action === "Check-in" ? "check-circle" : "monetization-on"}
-          size={20}
-          color={item.action === "Check-in" ? "#28b8a6" : "#e5de84"}
-          style={{ marginRight: 5 }}
-        />
-        <Text
-          style={{
-            color: item.action === "Check-in" ? "#28b8a6" : "#e5de84",
-            fontWeight: "500",
-            width: "20%",
-          }}
-        >
-          {item.action}
-        </Text>
-        <Icon
-          name="location-pin"
-          size={20}
-          color="#E53935"
-          style={{ marginRight: 5 }}
-        />
-        <Text
-          style={styles.location}
-          onPress={() =>
-            Linking.openURL("https://maps.app.goo.gl/i9onxptaZo7C5ERi7")
-          }
-        >
-          {item.location}
-        </Text>
+        <View style={{ flexDirection: "row", width: "30%" }}>
+          <Icon
+            name={
+              item.action === "Check-in" ? "check-circle" : "monetization-on"
+            }
+            size={20}
+            color={item.action === "Check-in" ? "#28b8a6" : "#e5de84"}
+          />
+          <Text
+            style={{
+              color: item.action === "Check-in" ? "#28b8a6" : "#e5de84",
+              fontWeight: "500",
+            }}
+          >
+            {item.action}
+          </Text>
+        </View>
+
+        <View style={{ flexDirection: "row", width: "65%" }}>
+          <Icon name="location-pin" size={20} color="#E53935" />
+          <Text
+            style={styles.location}
+            onPress={() =>
+              Linking.openURL("https://maps.app.goo.gl/i9onxptaZo7C5ERi7")
+            }
+          >
+            {item.location}
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -130,6 +130,7 @@ export default function FriendActivityScreen() {
           style={styles.searchInput}
           placeholder="Search all users..."
           placeholderTextColor="#999"
+          onChangeText={(value) => setSearch(value)}
         />
         <Icon name="search" size={20} color="#999" style={styles.searchIcon} />
       </View>
@@ -213,18 +214,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   location: {
-    fontSize: 14,
     color: "blue",
     fontWeight: "500",
-  },
-  navbar: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    backgroundColor: "#1C1F26",
-    paddingVertical: 10,
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
   },
 });
