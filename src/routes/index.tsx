@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "../pages/Login/LoginScreen";
 import RegisterScreen from "../pages/Register/RegisterScreen";
 import CheckinScreen from "../pages/Checkin/CheckinScreen";
-import BottomTabNav from "../common/BottomTab/BottomTabNavComponent";
 import useCustomerHomeTabViewModel from "../pages/CustomerHome/CustomerHomeTabViewModel";
+import BottomTabNav from "../common/Components/BottomTab/View";
 
 export function Routes() {
   const NativeStack = createNativeStackNavigator();
