@@ -5,6 +5,7 @@ import RegisterScreen from "../pages/Register/RegisterScreen";
 import CheckinScreen from "../pages/Checkin/CheckinScreen";
 import useCustomerHomeTabViewModel from "../pages/CustomerHome/CustomerHomeTabViewModel";
 import BottomTabNav from "../common/Components/BottomTab/View";
+import CustomerRewardsListView from "../pages/CustomerRewardsList/View";
 
 export function Routes() {
   const NativeStack = createNativeStackNavigator();
@@ -32,6 +33,11 @@ export function Routes() {
         <NativeStack.Screen
           name={"checkinScreen"}
           component={CheckinScreen}
+          options={{ headerShown: false }}
+        />
+        <NativeStack.Screen
+          name={"customerRewardsListView"}
+          component={CustomerRewardsListView}
           options={{ headerShown: false }}
         />
       </NativeStack.Navigator>

@@ -13,6 +13,7 @@ import { AnimatedCircularProgress } from "react-native-circular-progress";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import ArrowIcon from "react-native-vector-icons/MaterialIcons";
 import IconTrophy from "react-native-vector-icons/Entypo";
+import { useNavigation } from "@react-navigation/native";
 
 const data = [
   {
@@ -106,11 +107,13 @@ const CheckinProgressScreen = () => {
     }));
   };
 
+  const navigation: any = useNavigation();
+  
   const renderCheckinItem = ({ item }) => {
     const isExpanded = expandedItems[item.id];
 
     return (
-      <TouchableOpacity activeOpacity={0.8}>
+      <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate("customerRewardsListView")}>
         <View style={styles.card}>
           <View>
             <View style={{ flexDirection: "row" }}>
@@ -157,7 +160,7 @@ const CheckinProgressScreen = () => {
               </View>
             )}
             {item.isAvailableToClaim ? (
-              <TouchableOpacity style={styles.claimButton}>
+              <TouchableOpacity style={styles.claimButton} onPress={() => navigation.navigate("customerRewardsListView")}>
                 <Text style={styles.claimText}>Claim now</Text>
               </TouchableOpacity>
             ) : null}
