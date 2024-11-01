@@ -26,8 +26,7 @@ export default function CustomerHomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    flexDirection: "column",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     backgroundColor: "#0A0E17",
     alignContent: "center",
     padding: 20,
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 15,
     alignItems: "center",
-    marginTop: 20,
+    // marginTop: 20,
   },
   checkinButtonText: {
     color: "#FFF",

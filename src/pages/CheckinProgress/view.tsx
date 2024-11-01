@@ -4,17 +4,16 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View
 } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import { globalColors, globalFonts } from "../../../styles";
+import { SearchInput } from "../../common/Components/SearchInput/View";
 import CheckinProgressCard from "./CheckinProgressCard/view";
 import { useCheckinProgressViewModel } from "./viewModel";
-import { globalColors } from "../../../styles";
 
 const CheckinProgressScreen = () => {
-  const { arrayData, dataCheckinProgress } = useCheckinProgressViewModel();
+  const { arrayData, setSearch, search, filteredCheckinProgress } = useCheckinProgressViewModel();
 
   const [selectedItems, setSelectedItems] = useState([]);
 
@@ -27,25 +26,13 @@ const CheckinProgressScreen = () => {
   };
 
   return (
-    <>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Check-ins</Text>
-          <Text style={styles.subtitle}>History of completed check-ins</Text>
-        </View>
-        <View style={styles.searchContainer}>
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search all users..."
-            placeholderTextColor="#999"
-          />
-          <Icon
-            name="search"
-            size={20}
-            color="#999"
-            style={styles.searchIcon}
-          />
-        </View>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Check-ins</Text>
+        <Text style={styles.subTitle}>History of completed check-ins</Text>
+      </View>
+      <SearchInput value={search} onChange={setSearch} />
+      <View>
         <ScrollView
           style={{ marginBottom: 10 }}
           horizontal
@@ -78,9 +65,8 @@ const CheckinProgressScreen = () => {
         </ScrollView>
       </View>
       <FlatList
-        style={{ backgroundColor: globalColors.background, flex: 1, paddingHorizontal: 16 }}
         showsVerticalScrollIndicator={false}
-        data={dataCheckinProgress}
+        data={filteredCheckinProgress}
         renderItem={({ item }) => (
           <CheckinProgressCard
             item={item}
@@ -88,11 +74,16 @@ const CheckinProgressScreen = () => {
         )}
         keyExtractor={(item) => item.id}
       />
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: globalColors.background,
+    paddingHorizontal: 16,
+  },
   header: {
     padding: 5,
   },
@@ -100,20 +91,16 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   title: {
-    fontSize: 30,
+    fontSize: globalFonts.titleSize,
     fontWeight: "bold",
     paddingTop: 6,
     color: globalColors.white,
   },
-  subtitle: {
-    fontSize: 16,
+  subTitle: {
+    fontSize: globalFonts.subtitleSize,
     color: globalColors.white,
     marginTop: 5,
     fontWeight: "bold",
-  },
-  container: {
-    backgroundColor: globalColors.background,
-    paddingHorizontal: 16,
   },
   flatList: {
     backgroundColor: globalColors.background,

@@ -12,6 +12,7 @@ import ArrowIcon from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
 import { CheckinProgressCardModel } from "./model";
 import { useCheckinProgressCardViewModel } from "./viewModel";
+import { globalColors } from "../../../../styles";
 
 export const CheckinProgressCard: React.FC<CheckinProgressCardModel> = ({
     item,
@@ -23,69 +24,70 @@ export const CheckinProgressCard: React.FC<CheckinProgressCardModel> = ({
     const navigation: any = useNavigation();
 
     return (
-        <View >
-            <TouchableOpacity style={styles.card} activeOpacity={0.8} onPress={() => navigation.navigate("customerRewardsListView")}>
-                <View>
-                    <View style={{ flexDirection: "row" }}>
-                        <Image source={{ uri: item.image }} style={styles.image} />
-                        <View style={styles.infoContainer}>
-                            <Text style={styles.titleEstablishment}>{item.name}</Text>
-                            <Text style={styles.lastCheckin}>
-                                Last check-in {item.lastCheckin}
-                            </Text>
-                        </View>
-                        <View style={{ marginLeft: 2 }}>
-                            <Text style={styles.titleCheckin}>Check-ins</Text>
-                            <Text style={styles.amountCheckin}>5</Text>
-                        </View>
+        <View style={styles.card}>
+            <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate("customerRewardsListView")}>
+                <View style={{ flexDirection: "row" }}>
+                    <Image source={{ uri: item.image }} style={styles.avatar} />
+                    <View style={styles.info}>
+                        <Text style={styles.titleEstablishment}>{item.name}</Text>
+                        <Text style={styles.lastCheckin}>
+                            Last check-in {item.lastCheckin}
+                        </Text>
                     </View>
-
-                    {isExpanded && (
-                        <View style={styles.body}>
-                            <View style={styles.rewards}>
-                                <View style={styles.rewardItem}>
-                                    <View style={styles.rewardDotUnlocked} />
-                                    <Text style={styles.rewardText}>Rewards unlocked</Text>
-                                </View>
-                                <View style={styles.rewardItem}>
-                                    <View style={styles.rewardDot} />
-                                    <Text style={styles.rewardText}>Rewards</Text>
-                                </View>
-                            </View>
-                            <AnimatedCircularProgress
-                                size={60}
-                                width={7.2}
-                                fill={40}
-                                tintColor="#28b8a6"
-                                backgroundColor="#ccc"
-                                duration={1500}
-                            >
-                                {() => (
-                                    <View style={styles.progressContent}>
-                                        <IconTrophy name="trophy" size={20} color="gold" />
-                                        <Text style={styles.progressText}>10/10</Text>
-                                    </View>
-                                )}
-                            </AnimatedCircularProgress>
-                        </View>
-                    )}
-                    {item.isAvailableToClaim ? (
-                        <TouchableOpacity style={styles.claimButton} onPress={() => navigation.navigate("customerRewardsListView")}>
-                            <Text style={styles.claimText}>Claim now</Text>
+                    <View style={{ marginLeft: 2 }}>
+                        <Text style={styles.titleCheckin}>Check-ins</Text>
+                        <Text style={styles.amountCheckin}>5</Text>
+                    </View>
+                    <View style={{ justifyContent: "center" }}>
+                        <TouchableOpacity
+                            onPress={() => toggleExpand(item.id)}
+                        >
+                            {isExpanded ? (
+                                <ArrowIcon name="keyboard-arrow-down" size={30} color="#999" />
+                            ) : (
+                                <ArrowIcon name="keyboard-arrow-right" size={30} color="#999" />
+                            )}
                         </TouchableOpacity>
-                    ) : null}
+                    </View>
                 </View>
 
-                <TouchableOpacity
-                    onPress={() => toggleExpand(item.id)}
-                    style={{ justifyContent: "center" }}
-                >
-                    {isExpanded ? (
-                        <ArrowIcon name="keyboard-arrow-down" size={30} color="#999" />
-                    ) : (
-                        <ArrowIcon name="keyboard-arrow-right" size={30} color="#999" />
-                    )}
-                </TouchableOpacity>
+                {isExpanded && (
+                    <View style={styles.body}>
+                        <View >
+                            <View style={styles.rewardItem}>
+                                <View style={styles.rewardDotUnlocked} />
+                                <Text style={styles.rewardText}>Rewards unlocked</Text>
+                            </View>
+                            <View style={styles.rewardItem}>
+                                <View style={styles.rewardDot} />
+                                <Text style={styles.rewardText}>Rewards</Text>
+                            </View>
+                        </View>
+                        <AnimatedCircularProgress
+                            size={65}
+                            width={7.2}
+                            fill={42}
+                            tintColor="#28b8a6"
+                            backgroundColor="#ccc"
+                            duration={1500}
+                        >
+                            {() => (
+                                <View style={styles.progressContent}>
+                                    <IconTrophy name="trophy" size={20} color="gold" />
+                                    <Text style={styles.progressText}>10/10</Text>
+                                </View>
+                            )}
+                        </AnimatedCircularProgress>
+                    </View>
+                )}
+
+                {item.isAvailableToClaim && (
+                    <TouchableOpacity style={styles.claimButton} onPress={() => navigation.navigate("customerRewardsListView")}>
+                        <Text style={styles.claimText}>Claim now</Text>
+                    </TouchableOpacity>
+                )}
+
+
             </TouchableOpacity>
         </View>
     );
@@ -98,9 +100,6 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         backgroundColor: "#28b8a6",
         marginRight: 8,
-    },
-    rewards: {
-        flexDirection: "column",
     },
     rewardItem: {
         flexDirection: "row",
@@ -132,27 +131,25 @@ const styles = StyleSheet.create({
         paddingHorizontal: 11,
     },
     card: {
-        flexDirection: "row",
-        backgroundColor: "#ffff",
+        backgroundColor: globalColors.white,
+        borderRadius: 16,
         padding: 16,
         marginBottom: 15,
-        borderRadius: 16,
-        justifyContent: 'center'
     },
-    image: {
-        width: 55,
-        height: 55,
+    avatar: {
+        width: "20%",
+        aspectRatio: 1,
         borderRadius: 35,
         marginRight: 10,
     },
-    infoContainer: {
-        marginRight: 4,
-        width: "55%",
+    info: {
+        flex: 1,
+        flexDirection: "column",
     },
     titleEstablishment: {
-        color: "black",
-        fontWeight: "bold",
         fontSize: 16,
+        fontWeight: "bold",
+        color: "black",
     },
     titleCheckin: {
         color: "black",
@@ -165,14 +162,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     lastCheckin: {
-        color: "#67727a",
         fontSize: 12,
-        marginVertical: 1,
+        color: "#67727a",
+        marginBottom: 8,
     },
     claimButton: {
         backgroundColor: "#c929b0",
-        width: "95%",
-        marginLeft: "6.5%",
         padding: 8,
         borderRadius: 9,
         marginTop: 10,
