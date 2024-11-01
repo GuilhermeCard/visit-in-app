@@ -2,6 +2,7 @@ import { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import QRCode from "react-qr-code";
 import { useNavigation } from "@react-navigation/native";
+import { globalColors, globalFonts } from "../../../styles";
 
 export default function CheckinScreen() {
   const [qrCodeValue, setqrCodeValue] = useState("");
@@ -22,10 +23,10 @@ export default function CheckinScreen() {
       </Text>
 
       <View style={styles.qrContainer}>
-        <QRCode value={qrCodeValue} size={250} />
+        <QRCode value={qrCodeValue} fgColor={globalColors.background} />
       </View>
 
-      <View>
+      <View style={{ justifyContent: "space-evenly", flexGrow: 1 }}>
         <TouchableOpacity
           style={styles.checkinButton}
           onPress={() => handleShare()}
@@ -48,10 +49,8 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     flexDirection: "column",
-    justifyContent: "space-around",
-    backgroundColor: "#0A0E17",
-    alignContent: "center",
-    padding: 40,
+    backgroundColor: globalColors.background,
+    padding: 16,
   },
   logo: {
     fontSize: 32,
@@ -63,25 +62,23 @@ const styles = StyleSheet.create({
     color: "#C13584",
   },
   qrContainer: {
+    flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#0A0E17",
+    backgroundColor: globalColors.background,
     borderRadius: 16,
-    color: "#ffff",
-    padding: 10,
     borderWidth: 1.3,
-    borderColor: "#ffff",
+    borderColor: globalColors.white,
   },
   checkinButton: {
     backgroundColor: "#C13584",
     borderRadius: 8,
     paddingVertical: 15,
     alignItems: "center",
-    marginTop: 20,
   },
   checkinButtonText: {
-    color: "#FFF",
-    fontSize: 18,
+    color: globalColors.white,
+    fontSize: globalFonts.subtitleSize,
     fontWeight: "bold",
   },
 });

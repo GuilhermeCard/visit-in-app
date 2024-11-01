@@ -20,7 +20,7 @@ export default function CustomerRewardsListView() {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <RewardCard
-            item={item}
+            reward={item}
             customerCheckins={customerCheckins}
             progress={checkinProgress}
           />

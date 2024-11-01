@@ -8,7 +8,7 @@ export default function useCustomerHomeTabViewModel(): TabItem[] {
   return [
     { iconName: "home", name: "Home", component: CustomerHomeScreen },
     { iconName: "people-alt", name: "FriendActivity", component: FriendActivityView },
-    { iconName: "format-list-numbered", name: "CheckinProgress", component: CheckinProgressScreen },
+    { iconName: "done-all", name: "CheckinProgress", component: CheckinProgressScreen },
     { iconName: "settings", name: "teste", component: SettingsScreen }
   ];
 }

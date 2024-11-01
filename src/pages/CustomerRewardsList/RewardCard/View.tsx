@@ -4,34 +4,38 @@ import { globalColors, globalFonts } from "../../../../styles";
 import ProgressBar from "react-native-progress/Bar";
 import { useRewardCardViewModel } from "./ViewModel";
 import { RewardCardModel } from "./Model";
+import { useNavigation } from "@react-navigation/native";
 
 export const RewardCard: React.FC<RewardCardModel> = ({
-  item,
+  reward,
   customerCheckins,
   progress,
 }) => {
+  const navigation: any = useNavigation();
+
   const { delayedProgress, setLayoutComplete } = useRewardCardViewModel({
-    item,
+    reward,
     customerCheckins,
     progress,
   });
 
-  const cardStyle = item.isAvailableToClaim
+  const cardStyle = reward.isAvailableToClaim
     ? styles.cardClickable
-    : styles.cardDefault; // Define o estilo do cartão
+    : styles.cardDisable; // Define o estilo do cartão
 
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       style={cardStyle}
       onLayout={() => setLayoutComplete(true)} // Marca layout como completo
-      disabled={!item.isAvailableToClaim}
+      disabled={!reward.isAvailableToClaim}
+      onPress={() => navigation.navigate("claimReward", { reward })}
     >
       <View style={{ flexDirection: "row" }}>
-        <Image source={{ uri: item.image }} style={styles.image} />
+        <Image source={{ uri: reward.image }} style={styles.image} />
         <View style={styles.info}>
-          <Text style={styles.name}>{item.name}</Text>
-          <Text style={styles.description}>{item.description}</Text>
+          <Text style={styles.name}>{reward.name}</Text>
+          <Text style={styles.description}>{reward.description}</Text>
 
           <View>
             <ProgressBar
@@ -42,14 +46,13 @@ export const RewardCard: React.FC<RewardCardModel> = ({
               unfilledColor="#999"
               borderColor="#999"
               animated={true}
-              useNativeDriver={true}
               animationType="timing"
               animationConfig={{ duration: 1500 }}
               borderRadius={10}
             />
             <View style={styles.progressBarTextContainer}>
               <Text style={styles.progressBarDescription}>
-                {customerCheckins} of {item.qtdCheckinNeeded}
+                {customerCheckins} of {reward.amountCheckinNeeded}
               </Text>
             </View>
           </View>
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 15,
   },
-  cardDefault: {
+  cardDisable: {
     backgroundColor: "#b3b2b2",
     borderRadius: 16,
     padding: 10,

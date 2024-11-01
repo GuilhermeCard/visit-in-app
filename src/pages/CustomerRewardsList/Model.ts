@@ -3,6 +3,8 @@ export type CustomerReward = {
     name: string;
     description: string;
     isAvailableToClaim: boolean,
-    qtdCheckinNeeded: number;
+    amountCheckinNeeded: number;
     image: string;
+    validityDate: string;
+    isAvailable: boolean;
 };

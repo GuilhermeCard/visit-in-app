@@ -5,7 +5,7 @@ import { RewardCardModel } from "./Model";
 
 // Hook ViewModel para isolar a lógica da tela
 export const useRewardCardViewModel = ({
-    item,
+    reward,
     customerCheckins,
     progress,
 }: RewardCardModel) => {
@@ -15,9 +15,9 @@ export const useRewardCardViewModel = ({
     // Função para iniciar a animação após layout e foco
     const startAnimation = useCallback(() => {
         InteractionManager.runAfterInteractions(() => {
-            setDelayedProgress(progress(customerCheckins, item.qtdCheckinNeeded));
+            setDelayedProgress(progress(customerCheckins, reward.amountCheckinNeeded));
         });
-    }, [customerCheckins, item.qtdCheckinNeeded, progress]);
+    }, [customerCheckins, reward.amountCheckinNeeded, progress]);
 
     // Dispara a animação apenas quando o layout está completo e a tela está em foco
     useFocusEffect(
