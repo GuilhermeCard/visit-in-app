@@ -38,17 +38,16 @@ export const CheckinProgressCard: React.FC<CheckinProgressCardModel> = ({
                         <Text style={styles.titleCheckin}>Check-ins</Text>
                         <Text style={styles.amountCheckin}>5</Text>
                     </View>
-                    <View style={{ justifyContent: "center" }}>
-                        <TouchableOpacity
-                            onPress={() => toggleExpand(item.id)}
-                        >
-                            {isExpanded ? (
-                                <ArrowIcon name="keyboard-arrow-down" size={30} color="#999" />
-                            ) : (
-                                <ArrowIcon name="keyboard-arrow-right" size={30} color="#999" />
-                            )}
-                        </TouchableOpacity>
-                    </View>
+                    <TouchableOpacity
+                        style={{ justifyContent: 'center' }}
+                        onPress={() => toggleExpand(item.id)}
+                    >
+                        {isExpanded ? (
+                            <ArrowIcon name="keyboard-arrow-down" size={30} color="#999" />
+                        ) : (
+                            <ArrowIcon name="keyboard-arrow-right" size={30} color="#999" />
+                        )}
+                    </TouchableOpacity>
                 </View>
 
                 {isExpanded && (
@@ -167,7 +166,7 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
     claimButton: {
-        backgroundColor: "#c929b0",
+        backgroundColor: "#c929a1",
         padding: 8,
         borderRadius: 9,
         marginTop: 10,

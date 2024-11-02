@@ -48,7 +48,7 @@ export const ActivityCard: React.FC<Props> = ({ item }) => (
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: globalColors.white,
+    backgroundColor: globalColors.backgroundCard,
     borderRadius: 16,
     padding: 16,
     marginBottom: 15,
