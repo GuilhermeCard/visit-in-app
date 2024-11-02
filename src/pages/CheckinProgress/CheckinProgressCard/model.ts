@@ -1,4 +1,4 @@
-import { CheckinProgressModel } from "../model";
+import { CheckinProgressModel } from "../Model";
 
 export type CheckinProgressCardModel = {
     item: CheckinProgressModel;

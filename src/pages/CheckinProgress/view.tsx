@@ -9,10 +9,10 @@ import {
 } from "react-native";
 import { globalColors, globalFonts } from "../../../styles";
 import { SearchInput } from "../../common/Components/SearchInput/View";
-import CheckinProgressCard from "./CheckinProgressCard/view";
-import { useCheckinProgressViewModel } from "./viewModel";
+import CheckinProgressCard from "./CheckinProgressCard/View";
+import { useCheckinProgressViewModel } from "./ViewModel";
 
-const CheckinProgressScreen = () => {
+const CheckinProgressView = () => {
   const { arrayData, setSearch, search, filteredCheckinProgress } = useCheckinProgressViewModel();
 
   const [selectedItems, setSelectedItems] = useState([]);
@@ -138,4 +138,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CheckinProgressScreen;
+export default CheckinProgressView;

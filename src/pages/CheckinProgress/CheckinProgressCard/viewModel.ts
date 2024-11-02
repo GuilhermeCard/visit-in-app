@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckinProgressCardModel } from "./model";
+import { CheckinProgressCardModel } from "./Model";
 
 export const useCheckinProgressCardViewModel = ({
     item,

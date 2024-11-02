@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CheckinProgressModel } from "./model";
+import { CheckinProgressModel } from "./Model";
 
 const arrayData: any[] = [
   "Bar Universitário",

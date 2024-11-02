@@ -11,7 +11,7 @@ type RootStackParamList = {
 
 type ClaimRewardScreenRouteProp = RouteProp<RootStackParamList, "claimReward">;
 
-export default function ClaimReward() {
+export default function ClaimRewardView() {
   const route = useRoute<ClaimRewardScreenRouteProp>();
   const { reward } = route.params;
 

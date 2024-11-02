@@ -5,7 +5,7 @@ import { globalColors } from "../../../../styles";
 
 const Tab = createBottomTabNavigator();
 
-export default function BottomTabNav(tabs: TabItem[]) {
+export default function CustomerBottomTabNavView(tabs: TabItem[]) {
   return (
     <Tab.Navigator
       screenOptions={{

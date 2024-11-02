@@ -64,13 +64,13 @@ export const RewardCard: React.FC<RewardCardModel> = ({
 
 const styles = StyleSheet.create({
   cardClickable: {
-    backgroundColor: globalColors.white,
+    backgroundColor: globalColors.backgroundCard,
     borderRadius: 16,
     padding: 10,
     marginBottom: 15,
   },
   cardDisable: {
-    backgroundColor: "#b3b2b2",
+    backgroundColor: "#ccc",
     borderRadius: 16,
     padding: 10,
     marginBottom: 15,

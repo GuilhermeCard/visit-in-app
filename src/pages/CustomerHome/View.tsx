@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function CustomerHomeScreen() {
+export default function CustomerHomeView() {
   const navigation: any = useNavigation();
   return (
     <View style={styles.container}>
@@ -15,7 +15,7 @@ export default function CustomerHomeScreen() {
 
       <TouchableOpacity
         style={styles.checkinButton}
-        onPress={() => navigation.navigate("checkinScreen")}
+        onPress={() => navigation.navigate("customerQrCode")}
       >
         <Text style={styles.checkinButtonText}>Check-in</Text>
       </TouchableOpacity>

@@ -1,12 +1,13 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "../pages/Login/LoginScreen";
-import RegisterScreen from "../pages/Register/View";
-import CheckinScreen from "../pages/Checkin/CheckinScreen";
-import useCustomerHomeTabViewModel from "../pages/CustomerHome/CustomerHomeTabViewModel";
-import BottomTabNav from "../common/Components/BottomTab/View";
+import LoginView from "../pages/Login/View";
+import RegisterView from "../pages/Register/View";
+import CustomerQrCodeView from "../pages/CustomerQrCode/View";
+import useCustomerHomeTabViewModel from "../common/Components/CustomerBottomTab/ViewModel";
+import CustomerBottomTabNavView from "../common/Components/CustomerBottomTab/View";
 import CustomerRewardsListView from "../pages/CustomerRewardsList/View";
-import ClaimReward from "../pages/ClaimReward/View";
+import ClaimRewardView from "../pages/ClaimReward/View";
+import ClaimedRewardsListView from "../pages/ClaimedRewardsList/View";
 
 export function Routes() {
   const NativeStack = createNativeStackNavigator();
@@ -14,36 +15,44 @@ export function Routes() {
 
   return (
     <NavigationContainer>
-      <NativeStack.Navigator initialRouteName={"loginScreen"}>
-        <NativeStack.Screen name="home" options={{ headerShown: false }}>
-          {() => BottomTabNav(tabs)}
+      <NativeStack.Navigator initialRouteName={"login"}>
+        <NativeStack.Screen
+          name="customerBottonTabNav"
+          options={{ headerShown: false }}
+        >
+          {() => CustomerBottomTabNavView(tabs)}
         </NativeStack.Screen>
 
         <NativeStack.Screen
-          name={"loginScreen"}
-          component={LoginScreen}
+          name={"login"}
+          component={LoginView}
           options={{ headerShown: false }}
         />
 
         <NativeStack.Screen
-          name={"registerScreen"}
-          component={RegisterScreen}
+          name={"register"}
+          component={RegisterView}
           options={{ headerShown: false }}
         />
 
         <NativeStack.Screen
-          name={"checkinScreen"}
-          component={CheckinScreen}
+          name={"customerQrCode"}
+          component={CustomerQrCodeView}
           options={{ headerShown: false }}
         />
         <NativeStack.Screen
-          name={"customerRewardsListView"}
+          name={"customerRewardsList"}
           component={CustomerRewardsListView}
           options={{ headerShown: false }}
         />
         <NativeStack.Screen
           name={"claimReward"}
-          component={ClaimReward}
+          component={ClaimRewardView}
+          options={{ headerShown: false }}
+        />
+        <NativeStack.Screen
+          name={"claimedRewardsList"}
+          component={ClaimedRewardsListView}
           options={{ headerShown: false }}
         />
       </NativeStack.Navigator>

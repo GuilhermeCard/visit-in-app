@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-export default function RegisterScreen() {
+export default function RegisterView() {
   const navigation: any = useNavigation();
   const [selectedType, setSelectedType] = useState("default");
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -24,7 +24,7 @@ export default function RegisterScreen() {
       [
         {
           text: "OK",
-          onPress: () => navigation.navigate("loginScreen"),
+          onPress: () => navigation.navigate("login"),
         },
       ],
       { cancelable: false }

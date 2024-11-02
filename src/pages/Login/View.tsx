@@ -9,12 +9,12 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-export default function LoginScreen() {
+export default function LoginView() {
   const navigation: any = useNavigation();
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   function login() {
-    navigation.dispatch(StackActions.replace("home"));
+    navigation.dispatch(StackActions.replace("customerBottonTabNav"));
   }
 
   return (
@@ -53,7 +53,7 @@ export default function LoginScreen() {
 
       <Text
         style={styles.footerText}
-        onPress={() => navigation.navigate("registerScreen")}
+        onPress={() => navigation.navigate("register")}
       >
         Don't have an account?{" "}
         <Text style={styles.signUpText}>Sign Up here</Text>

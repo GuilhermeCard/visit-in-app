@@ -1,20 +1,11 @@
-import { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import QRCode from "react-qr-code";
-import { useNavigation } from "@react-navigation/native";
 import { globalColors, globalFonts } from "../../../styles";
+import useCustomerQrCodeViewModel from "./ViewModel";
 
-export default function CheckinScreen() {
-  const [qrCodeValue, setqrCodeValue] = useState("");
-  const navigation = useNavigation();
-
-  const handleShare = () => {
-    alert("Share code clicked");
-  };
-
-  function handleRegenerate() {
-    setqrCodeValue(JSON.stringify(Math.random() * 10));
-  }
+export default function CustomerQrCodeView() {
+  const { qrCodeValue, handleShare, handleRegenerate } =
+    useCustomerQrCodeViewModel();
 
   return (
     <View style={styles.container}>

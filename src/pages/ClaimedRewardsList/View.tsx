@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function SettingsScreen() {
+export default function ClaimedRewardsListView() {
   const navigation: any = useNavigation();
   return (
     <View >
