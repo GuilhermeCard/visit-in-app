@@ -22,10 +22,8 @@ export default function CheckinScreen() {
         <Text style={styles.highlight}>Visit-in</Text>
       </Text>
 
-      <View style={styles.qrBorder}>
-        <View style={styles.qrContainer}>
-          <QRCode value={qrCodeValue} fgColor={globalColors.background} />
-        </View>
+      <View style={styles.qrContainer}>
+        <QRCode value={qrCodeValue} />
       </View>
       <View>
         <TouchableOpacity
@@ -62,20 +60,13 @@ const styles = StyleSheet.create({
   highlight: {
     color: "#C13584",
   },
-  qrBorder: {
-    height: "51.2%",
-    justifyContent: "center",
-    borderRadius: 16,
-    borderWidth: 1.3,
-    borderColor: globalColors.white,
-    marginVertical: 10,
-  },
   qrContainer: {
     alignSelf: "center",
-    backgroundColor: globalColors.background,
+    backgroundColor: globalColors.white,
     borderRadius: 10,
-    borderWidth: 10,
+    borderWidth: 12,
     borderColor: globalColors.white,
+    marginVertical: 10,
   },
   checkinButton: {
     marginVertical: 10,
