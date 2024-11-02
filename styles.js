@@ -3,6 +3,7 @@ export const globalColors = {
   white: "#FFFFFF",
   primary: "#c929b0",
   placeHolder: "#999",
+  backgroundCard: "#f0f0f0"
 };
 
 export const globalFonts = {
