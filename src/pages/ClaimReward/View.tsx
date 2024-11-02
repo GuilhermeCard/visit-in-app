@@ -6,7 +6,7 @@ import { CustomerReward } from "../CustomerRewardsList/Model";
 import { globalColors, globalFonts } from "../../../styles";
 
 type RootStackParamList = {
-  claimReward: { reward: CustomerReward }; // Substitua 'RewardType' pelo tipo do seu objeto reward
+  claimReward: { reward: CustomerReward };
 };
 
 type ClaimRewardScreenRouteProp = RouteProp<RootStackParamList, "claimReward">;
@@ -44,6 +44,7 @@ export default function ClaimReward() {
 
 const styles = StyleSheet.create({
   container: {
+    justifyContent: "center",
     flexGrow: 1,
     padding: 16,
     backgroundColor: globalColors.background,

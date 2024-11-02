@@ -22,11 +22,12 @@ export default function CheckinScreen() {
         <Text style={styles.highlight}>Visit-in</Text>
       </Text>
 
-      <View style={styles.qrContainer}>
-        <QRCode value={qrCodeValue} fgColor={globalColors.background} />
+      <View style={styles.qrBorder}>
+        <View style={styles.qrContainer}>
+          <QRCode value={qrCodeValue} fgColor={globalColors.background} />
+        </View>
       </View>
-
-      <View style={{ justifyContent: "space-evenly", flexGrow: 1 }}>
+      <View>
         <TouchableOpacity
           style={styles.checkinButton}
           onPress={() => handleShare()}
@@ -47,8 +48,8 @@ export default function CheckinScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
-    flexDirection: "column",
+    flex: 1,
+    justifyContent: "center",
     backgroundColor: globalColors.background,
     padding: 16,
   },
@@ -61,16 +62,23 @@ const styles = StyleSheet.create({
   highlight: {
     color: "#C13584",
   },
-  qrContainer: {
-    flexGrow: 1,
+  qrBorder: {
+    height: "51.2%",
     justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: globalColors.background,
     borderRadius: 16,
     borderWidth: 1.3,
     borderColor: globalColors.white,
+    marginVertical: 10,
+  },
+  qrContainer: {
+    alignSelf: "center",
+    backgroundColor: globalColors.background,
+    borderRadius: 10,
+    borderWidth: 10,
+    borderColor: globalColors.white,
   },
   checkinButton: {
+    marginVertical: 10,
     backgroundColor: "#C13584",
     borderRadius: 8,
     paddingVertical: 15,
