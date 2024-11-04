@@ -35,7 +35,7 @@ export default function ClaimRewardView() {
       </TouchableOpacity>
 
       {reward.isAvailableToClaim && (
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row", justifyContent: "center" }}>
           <Icon name="check" size={20} color="#28b8a6"></Icon>
           <Text style={styles.validityText}>
             Reward available to claim up to {reward.validityDate.split(",")[0]}.

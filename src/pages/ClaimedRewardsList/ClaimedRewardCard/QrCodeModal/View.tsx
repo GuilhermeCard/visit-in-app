@@ -7,12 +7,20 @@ import {
   Text,
 } from "react-native";
 import QRCode from "react-qr-code";
-import { globalColors } from "../../../../../styles";
+import { globalColors, globalFonts } from "../../../../../styles";
+import { QrCodeModalProps } from "./Model";
+import { useQrCodeModalViewModel } from "./ViewModel";
 
-export const QRCodeModal = ({ isVisible, onClose, qrCodeValue }) => {
+export const QRCodeModal: React.FC<QrCodeModalProps> = ({
+  isVisible,
+  onClose,
+  qrCodeValue,
+}) => {
+  const { handleShare } = useQrCodeModalViewModel();
+
   return (
     <Modal
-      animationType="fade"
+      animationType="slide"
       transparent={true}
       visible={isVisible}
       onRequestClose={onClose}
@@ -25,6 +33,9 @@ export const QRCodeModal = ({ isVisible, onClose, qrCodeValue }) => {
         <View style={styles.qrContainer}>
           <QRCode value={qrCodeValue} />
         </View>
+        <TouchableOpacity onPress={handleShare} style={styles.shareCodeButtom}>
+          <Text style={styles.shareCodeButtomText}>Share code</Text>
+        </TouchableOpacity>
       </TouchableOpacity>
     </Modal>
   );
@@ -38,9 +49,19 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   qrContainer: {
-    padding: 16,
+    padding: 18,
     backgroundColor: globalColors.white,
     borderRadius: 10,
-    alignItems: "center",
+  },
+  shareCodeButtom: {
+    backgroundColor: globalColors.primary,
+    borderRadius: 10,
+    padding: 10,
+    marginTop: 5,
+  },
+  shareCodeButtomText: {
+    color: globalColors.white,
+    fontSize: globalFonts.bodySize,
+    fontWeight: "bold",
   },
 });

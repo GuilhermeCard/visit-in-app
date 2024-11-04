@@ -69,7 +69,7 @@ export const ClaimedRewardCardView: React.FC<ClaimedRewardCard> = ({
 
       <QRCodeModal
         isVisible={modalVisible}
-        onClose={() => fecharModal()}
+        onClose={fecharModal}
         qrCodeValue={selectedQRCodeValue}
       />
     </TouchableOpacity>
