@@ -4,6 +4,7 @@ import useRewardViewModel from "./ViewModel";
 import { useRoute, RouteProp } from "@react-navigation/native";
 import { CustomerReward } from "../CustomerRewardsList/Model";
 import { globalColors, globalFonts } from "../../../styles";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 type RootStackParamList = {
   claimReward: { reward: CustomerReward };
@@ -34,9 +35,12 @@ export default function ClaimRewardView() {
       </TouchableOpacity>
 
       {reward.isAvailableToClaim && (
-        <Text style={styles.validityText}>
-          ✓ reward available to claim up to {reward.validityDate}.
-        </Text>
+        <View style={{ flexDirection: "row" }}>
+          <Icon name="check" size={20} color="#28b8a6"></Icon>
+          <Text style={styles.validityText}>
+            Reward available to claim up to {reward.validityDate.split(",")[0]}.
+          </Text>
+        </View>
       )}
     </View>
   );
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#b3b2b2",
   },
   validityText: {
-    color: "#4CAF50",
+    color: "#28b8a6",
     textAlign: "center",
     marginBottom: 8,
   },

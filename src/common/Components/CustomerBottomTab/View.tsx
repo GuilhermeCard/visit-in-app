@@ -1,13 +1,17 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { TabItem } from "./Model";
+import { BottomTabNavigatorProps } from "./Model";
 import { globalColors } from "../../../../styles";
 
 const Tab = createBottomTabNavigator();
 
-export default function CustomerBottomTabNavView(tabs: TabItem[]) {
+const BottomTabNavigator: React.FC<BottomTabNavigatorProps> = ({
+  routes,
+  initialRouteName,
+}) => {
   return (
     <Tab.Navigator
+      initialRouteName={initialRouteName}
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -16,7 +20,7 @@ export default function CustomerBottomTabNavView(tabs: TabItem[]) {
         },
       }}
     >
-      {tabs.map((tab, index) => (
+      {routes.map((tab, index) => (
         <Tab.Screen
           key={index}
           name={tab.name}
@@ -35,4 +39,5 @@ export default function CustomerBottomTabNavView(tabs: TabItem[]) {
       ))}
     </Tab.Navigator>
   );
-}
+};
+export default BottomTabNavigator;

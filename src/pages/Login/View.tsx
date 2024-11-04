@@ -14,7 +14,7 @@ export default function LoginView() {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   function login() {
-    navigation.dispatch(StackActions.replace("customerBottonTabNav"));
+    navigation.dispatch(StackActions.replace("customerBottomTabNav"));
   }
 
   return (

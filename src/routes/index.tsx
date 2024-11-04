@@ -4,10 +4,10 @@ import LoginView from "../pages/Login/View";
 import RegisterView from "../pages/Register/View";
 import CustomerQrCodeView from "../pages/CustomerQrCode/View";
 import useCustomerHomeTabViewModel from "../common/Components/CustomerBottomTab/ViewModel";
-import CustomerBottomTabNavView from "../common/Components/CustomerBottomTab/View";
 import CustomerRewardsListView from "../pages/CustomerRewardsList/View";
 import ClaimRewardView from "../pages/ClaimReward/View";
 import ClaimedRewardsListView from "../pages/ClaimedRewardsList/View";
+import BottomTabNavigator from "../common/Components/CustomerBottomTab/View";
 
 export function Routes() {
   const NativeStack = createNativeStackNavigator();
@@ -17,10 +17,15 @@ export function Routes() {
     <NavigationContainer>
       <NativeStack.Navigator initialRouteName={"login"}>
         <NativeStack.Screen
-          name="customerBottonTabNav"
+          name="customerBottomTabNav"
           options={{ headerShown: false }}
         >
-          {() => CustomerBottomTabNavView(tabs)}
+          {() => (
+            <BottomTabNavigator
+              routes={tabs.routes}
+              initialRouteName={tabs.initialRouteName}
+            />
+          )}
         </NativeStack.Screen>
 
         <NativeStack.Screen

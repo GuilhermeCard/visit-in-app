@@ -3,3 +3,8 @@ export interface TabItem {
   name: string;
   component: React.ComponentType<any>;
 }
+
+export interface BottomTabNavigatorProps {
+  routes: TabItem[];
+  initialRouteName: string;
+}
