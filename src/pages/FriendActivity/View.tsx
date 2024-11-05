@@ -6,10 +6,12 @@ import { SearchInput } from "../../common/Components/SearchInput/View";
 import { globalColors, globalFonts } from "../../../styles";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import FriendListView from "./FriendList/View";
+import { useTranslation } from "react-i18next";
 
 const { width } = Dimensions.get('window');
 
 export default function FriendActivityView() {
+  const { t } = useTranslation();
   const { search, setSearch, filteredActivities } = useFriendActivityViewModel();
   
   const [menuVisible, setMenuVisible] = useState(false);
@@ -40,7 +42,7 @@ export default function FriendActivityView() {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text style={styles.title}>Friend Activity</Text>
+          <Text style={styles.title}>{t('Friend Activity')}</Text>
           <TouchableOpacity onPress={toggleMenu}>
             <Icon
               style={{ alignSelf: 'center', paddingTop: 11 }}
@@ -51,7 +53,7 @@ export default function FriendActivityView() {
           </TouchableOpacity>
         </View>
         <Text style={styles.subTitle}>
-          See what your friends have been up to
+        {t('See what your friends have been up to')}
         </Text>
       </View>
       
