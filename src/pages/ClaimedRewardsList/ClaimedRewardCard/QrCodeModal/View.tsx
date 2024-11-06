@@ -1,23 +1,14 @@
-import {
-  Modal,
-  View,
-  Button,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-} from "react-native";
+import { Modal, View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import QRCode from "react-qr-code";
 import { globalColors, globalFonts } from "../../../../../styles";
 import { QrCodeModalProps } from "./Model";
-import { useQrCodeModalViewModel } from "./ViewModel";
+import shareQrCodeValue from "../../../../common/Utils/ShareText";
 
 export const QRCodeModal: React.FC<QrCodeModalProps> = ({
   isVisible,
   onClose,
   qrCodeValue,
 }) => {
-  const { handleShare } = useQrCodeModalViewModel();
-
   return (
     <Modal
       animationType="slide"
@@ -33,7 +24,10 @@ export const QRCodeModal: React.FC<QrCodeModalProps> = ({
         <View style={styles.qrContainer}>
           <QRCode value={qrCodeValue} />
         </View>
-        <TouchableOpacity onPress={handleShare} style={styles.shareCodeButtom}>
+        <TouchableOpacity
+          onPress={() => shareQrCodeValue(qrCodeValue)}
+          style={styles.shareCodeButtom}
+        >
           <Text style={styles.shareCodeButtomText}>Share code</Text>
         </TouchableOpacity>
       </TouchableOpacity>

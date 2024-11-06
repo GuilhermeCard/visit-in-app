@@ -2,10 +2,10 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import QRCode from "react-qr-code";
 import { globalColors, globalFonts } from "../../../styles";
 import useCustomerQrCodeViewModel from "./ViewModel";
+import shareQrCodeValue from "../../common/Utils/ShareText";
 
 export default function CustomerQrCodeView() {
-  const { qrCodeValue, handleShare, handleRegenerate } =
-    useCustomerQrCodeViewModel();
+  const { qrCodeValue, handleRegenerate } = useCustomerQrCodeViewModel();
 
   return (
     <View style={styles.container}>
@@ -19,7 +19,7 @@ export default function CustomerQrCodeView() {
       <View>
         <TouchableOpacity
           style={styles.checkinButton}
-          onPress={() => handleShare()}
+          onPress={() => shareQrCodeValue(qrCodeValue)}
         >
           <Text style={styles.checkinButtonText}>Share code</Text>
         </TouchableOpacity>
