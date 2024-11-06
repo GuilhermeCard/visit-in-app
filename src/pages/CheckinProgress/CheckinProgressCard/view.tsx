@@ -4,13 +4,16 @@ import { AnimatedCircularProgress } from "react-native-circular-progress";
 import IconTrophy from "react-native-vector-icons/Entypo";
 import ArrowIcon from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
-import { CheckinProgressCardModel } from "./Model";
-import { useCheckinProgressCardViewModel } from "./ViewModel";
 import { globalColors } from "../../../../styles";
+import { CheckinProgressCardModel } from "./model";
+import { useCheckinProgressCardViewModel } from "./viewModel";
+import { useTranslation } from "react-i18next";
 
 export const CheckinProgressCard: React.FC<CheckinProgressCardModel> = ({
   item,
 }) => {
+  const { t } = useTranslation();
+  
   const { isExpanded, toggleExpand } = useCheckinProgressCardViewModel({
     item,
   });
@@ -81,7 +84,7 @@ export const CheckinProgressCard: React.FC<CheckinProgressCardModel> = ({
             style={styles.claimButton}
             onPress={() => navigation.navigate("customerRewardsList")}
           >
-            <Text style={styles.claimText}>Claim now</Text>
+            <Text style={styles.claimText}>{t('Claim now')}</Text>
           </TouchableOpacity>
         )}
       </TouchableOpacity>
@@ -127,7 +130,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 11,
   },
   card: {
-    backgroundColor: globalColors.white,
+    backgroundColor: globalColors.backgroundCard,
     borderRadius: 16,
     padding: 16,
     marginBottom: 15,

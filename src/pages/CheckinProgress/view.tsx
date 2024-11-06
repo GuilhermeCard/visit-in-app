@@ -9,10 +9,13 @@ import {
 } from "react-native";
 import { globalColors, globalFonts } from "../../../styles";
 import { SearchInput } from "../../common/Components/SearchInput/View";
-import CheckinProgressCard from "./CheckinProgressCard/View";
-import { useCheckinProgressViewModel } from "./ViewModel";
+import CheckinProgressCard from "./CheckinProgressCard/view";
+import { useCheckinProgressViewModel } from "./viewModel";
+import { useTranslation } from "react-i18next";
 
 const CheckinProgressView = () => {
+  const { t } = useTranslation();
+
   const { arrayData, setSearch, search, filteredCheckinProgress } = useCheckinProgressViewModel();
 
   const [selectedItems, setSelectedItems] = useState([]);
@@ -29,7 +32,7 @@ const CheckinProgressView = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Check-ins</Text>
-        <Text style={styles.subTitle}>History of completed check-ins</Text>
+        <Text style={styles.subTitle}>{t('History of completed check-ins')}</Text>
       </View>
       <SearchInput value={search} onChange={setSearch} />
       <View>

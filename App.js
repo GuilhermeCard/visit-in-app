@@ -1,6 +1,7 @@
 import { SafeAreaView, StatusBar } from "react-native";
 import { Routes } from "./src/routes";
 import { globalColors } from "./styles";
+import './src/common/locales/i18n'; 
 
 export default () => {
   return (

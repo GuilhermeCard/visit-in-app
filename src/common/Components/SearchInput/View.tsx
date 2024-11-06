@@ -2,29 +2,34 @@ import React from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { globalColors } from "../../../../styles";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   value: string;
   onChange: (text: string) => void;
 };
 
-export const SearchInput: React.FC<Props> = ({ value, onChange }) => (
-  <View style={styles.container}>
-    <TextInput
-      style={styles.input}
-      placeholder="Search all users..."
-      placeholderTextColor={globalColors.placeHolder}
-      value={value}
-      onChangeText={onChange}
-    />
-    <Icon
-      name="search"
-      size={20}
-      color={globalColors.placeHolder}
-      style={styles.icon}
-    />
-  </View>
-);
+export const SearchInput: React.FC<Props> = ({ value, onChange }) => {
+  const { t } = useTranslation();
+
+  return (
+    <View style={styles.container}>
+      <TextInput
+        style={styles.input}
+        placeholder={t('Search here...')}
+        placeholderTextColor={globalColors.placeHolder}
+        value={value}
+        onChangeText={onChange}
+      />
+      <Icon
+        name="search"
+        size={20}
+        color={globalColors.placeHolder}
+        style={styles.icon}
+      />
+    </View>
+  )
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: globalColors.primary,
+    borderColor: globalColors.backgroundCard,
     padding: 10,
     paddingHorizontal: 10,
   },
