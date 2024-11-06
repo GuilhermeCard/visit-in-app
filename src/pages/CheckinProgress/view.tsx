@@ -9,9 +9,9 @@ import {
 } from "react-native";
 import { globalColors, globalFonts } from "../../../styles";
 import { SearchInput } from "../../common/Components/SearchInput/View";
-import CheckinProgressCard from "./CheckinProgressCard/view";
-import { useCheckinProgressViewModel } from "./viewModel";
 import { useTranslation } from "react-i18next";
+import { useCheckinProgressViewModel } from "./ViewModel";
+import CheckinProgressCard from "./CheckinProgressCard/view";
 
 const CheckinProgressView = () => {
   const { t } = useTranslation();
