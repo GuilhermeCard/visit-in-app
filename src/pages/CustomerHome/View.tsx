@@ -1,7 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function CustomerHomeView() {
+  const { t } = useTranslation();
   const navigation: any = useNavigation();
   return (
     <View style={styles.container}>
@@ -10,7 +12,8 @@ export default function CustomerHomeView() {
       </Text>
 
       <Text style={styles.title}>
-        Have you already <Text style={styles.checkinText}>Check-in?</Text>
+        {t("Have you already")} <Text style={styles.checkinText}>check-in </Text>
+        <Text>{t("today?")}</Text>
       </Text>
 
       <TouchableOpacity

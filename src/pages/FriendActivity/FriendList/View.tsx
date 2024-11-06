@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 import IconPersonAdd from "react-native-vector-icons/MaterialCommunityIcons";
 import { globalColors } from '../../../../styles';
-import { useTranslation } from 'react-i18next';
 
 const patientsData = [
     { id: '1', name: 'Randy Rudolph', phone: '(123) 456-7890', email: 'name@domain.com', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
@@ -36,16 +36,15 @@ const FriendListView = () => {
                 <IconPersonAdd
                     name={"plus-circle-outline"}
                     size={30}
-                    color={'green'}
+                    color={'#4CAF50'}
                 />
             ) : (
                 <Icon
                     name={"person-circle-outline"}
                     size={30}
-                    color={globalColors.background}
+                    color={globalColors.primary}
                 />
             )}
-
         </TouchableOpacity>
     );
 
@@ -55,6 +54,7 @@ const FriendListView = () => {
             <TextInput
                 style={styles.searchInput}
                 placeholder="Search for friends here..."
+                placeholderTextColor="#888"
                 value={searchText}
                 onChangeText={setSearchText}
             />
@@ -71,38 +71,48 @@ const FriendListView = () => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: globalColors.white,
+        // flex: 1,
+        backgroundColor: globalColors.backgroundCard,
+        padding: 5,
     },
     header: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 'bold',
+        color: globalColors.primary,
         marginBottom: 16,
     },
     searchInput: {
-        height: 40,
+        height: 45,
         backgroundColor: "#c2c0c0",
         borderRadius: 8,
         paddingHorizontal: 12,
         marginBottom: 12,
+        fontSize: 16,
+        color: "#333",
     },
     resultCount: {
         fontSize: 14,
-        color: '#666',
+        color: '#888',
         marginBottom: 12,
     },
     patientContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: 10,
-        borderRadius: 16,
-        borderBottomWidth: 0.5,
-        borderBottomColor: '#969393',
+        paddingVertical: 15,
+        paddingHorizontal: 10,
+        borderRadius: 10,
+        backgroundColor: "#FFFFFF",
+        elevation: 5,
+        shadowColor: globalColors.primary,
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        marginBottom: 12,
     },
     patientImage: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
+        width: 60,
+        height: 60,
+        borderRadius: 30,
         marginRight: 12,
     },
     patientInfo: {
@@ -111,13 +121,11 @@ const styles = StyleSheet.create({
     patientName: {
         fontSize: 16,
         fontWeight: 'bold',
+        color: '#333',
     },
     patientDetails: {
         color: '#666',
-    },
-    arrow: {
-        fontSize: 18,
-        color: '#888',
+        fontSize: 14,
     },
 });
 

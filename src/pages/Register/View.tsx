@@ -1,21 +1,33 @@
+import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import {
   Alert,
-  View,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
+  View,
 } from "react-native";
-import { Picker } from "@react-native-picker/picker";
-import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { useRegisterViewModel } from "./ViewModel";
 
 export default function RegisterView() {
+  const { t } = useTranslation();
   const navigation: any = useNavigation();
-  const [selectedType, setSelectedType] = useState("default");
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+
+  const {
+    confirmPasswordVisible,
+    passwordVisible,
+    selectedType,
+    setConfirmPasswordVisible,
+    setPasswordVisible,
+    setSelectedType,
+    items,
+    open,
+    setItems,
+    setOpen
+  } = useRegisterViewModel();
 
   function save() {
     Alert.alert(
@@ -31,56 +43,28 @@ export default function RegisterView() {
     );
   }
 
-  const handleRegister = async () => {
-    try {
-      // Simulando o envio de informações do formulário
-      const response = await fetch("SUA_URL_DE_REGISTRO", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          // Adicione os dados do formulário aqui
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        // Navegar para a tela de login em caso de sucesso
-        navigation.navigate("loginScreen"); // Substitua 'Login' pelo nome correto da sua tela de login
-      } else {
-        // Tratar erro, exibir mensagem para o usuário
-        Alert.alert("Erro", data.message || "Ocorreu um erro ao registrar.");
-      }
-    } catch (error) {
-      // Tratar erro de rede ou outro erro inesperado
-      Alert.alert("Erro", "Erro de conexão. Tente novamente mais tarde.");
-    }
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
-        Welcome to <Text style={styles.highlight}>Visit-in</Text>
+        {t("Welcome to")} <Text style={styles.highlight}>Visit-in</Text>
       </Text>
       <Text style={styles.subtitle}>
-        Let's start by creating your registration. Please fill out the form
-        below.
+        {t("Let's start by creating your registration. Please fill out the form below.")}
       </Text>
 
-      <View style={styles.dropdownContainer}>
-        <Picker
-          selectedValue={selectedType}
-          onValueChange={(itemValue) => setSelectedType(itemValue)}
-          style={styles.picker}
-          dropdownIconColor="#AAA"
-          // placeholderTextColor="#AAA"
-        >
-          <Picker.Item label="Select your register type" value="default" />
-          <Picker.Item label="Customer" value="CUSTOMER" />
-          <Picker.Item label="Business establishment" value="ESTABLISHMENT" />
-        </Picker>
+      <View style={{ marginBottom: 20 }}>
+        <DropDownPicker
+          open={open}
+          value={selectedType}
+          items={items}
+          setOpen={setOpen}
+          setValue={setSelectedType}
+          setItems={setItems}
+          placeholder={t("Select your register type")}
+          placeholderStyle={{ color: '#AAA' }}
+          style={styles.dropdown}
+          dropDownContainerStyle={styles.dropdownContainer}
+        />
       </View>
 
       <TextInput
@@ -98,7 +82,7 @@ export default function RegisterView() {
       <View style={styles.passwordContainer}>
         <TextInput
           style={{ flexGrow: 1 }}
-          placeholder="Password"
+          placeholder={t("Password")}
           placeholderTextColor="#AAA"
           secureTextEntry={!passwordVisible}
         />
@@ -114,7 +98,7 @@ export default function RegisterView() {
       <View style={styles.passwordContainer}>
         <TextInput
           style={{ flexGrow: 1 }}
-          placeholder="Confirm password"
+          placeholder={t("Confirm password")}
           placeholderTextColor="#AAA"
           secureTextEntry={!confirmPasswordVisible}
         />
@@ -130,7 +114,7 @@ export default function RegisterView() {
       </View>
 
       <TouchableOpacity style={styles.registerButton} onPress={save}>
-        <Text style={styles.registerButtonText}>Register</Text>
+        <Text style={styles.registerButtonText}>{t("Register")}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -142,6 +126,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#0A0E17",
     justifyContent: "center",
     padding: 20,
+  },
+  dropdown: {
+    backgroundColor: "#fff",
+    borderColor: '#AAA',
   },
   title: {
     color: "#FFF",
@@ -160,13 +148,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   dropdownContainer: {
-    backgroundColor: "#F5F6FA",
-    borderRadius: 8,
-    marginBottom: 20,
-  },
-  picker: {
-    height: 50,
-    color: "#000",
+    backgroundColor: '#fff',
   },
   input: {
     backgroundColor: "#F5F6FA",

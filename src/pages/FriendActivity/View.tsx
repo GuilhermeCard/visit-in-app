@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import { View, FlatList, StyleSheet, Text, TouchableOpacity, Animated, Dimensions, Easing, TouchableWithoutFeedback } from "react-native";
-import { useFriendActivityViewModel } from "./ViewModel";
-import { ActivityCard } from "./ActivityCard/View";
-import { SearchInput } from "../../common/Components/SearchInput/View";
-import { globalColors, globalFonts } from "../../../styles";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import FriendListView from "./FriendList/View";
 import { useTranslation } from "react-i18next";
+import { Animated, Dimensions, Easing, FlatList, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { globalColors, globalFonts } from "../../../styles";
+import { SearchInput } from "../../common/Components/SearchInput/View";
+import { ActivityCard } from "./ActivityCard/View";
+import FriendListView from "./FriendList/View";
+import { useFriendActivityViewModel } from "./ViewModel";
 
 const { width } = Dimensions.get('window');
 
 export default function FriendActivityView() {
   const { t } = useTranslation();
   const { search, setSearch, filteredActivities } = useFriendActivityViewModel();
-  
+
   const [menuVisible, setMenuVisible] = useState(false);
   const [menuAnimation] = useState(new Animated.Value(-width * 0.80)); // Menu começa fora da tela
 
@@ -53,19 +53,19 @@ export default function FriendActivityView() {
           </TouchableOpacity>
         </View>
         <Text style={styles.subTitle}>
-        {t('See what your friends have been up to')}
+          {t('See what your friends have been up to')}
         </Text>
       </View>
-      
+
       <SearchInput value={search} onChange={setSearch} />
-      
+
       <FlatList
         showsVerticalScrollIndicator={false}
         data={filteredActivities}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <ActivityCard item={item} />}
       />
-      
+
       {menuVisible && (
         <TouchableWithoutFeedback onPress={toggleMenu}>
           <View style={styles.overlay} />
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     width: width * 0.80,
-    backgroundColor: globalColors.white ,
+    backgroundColor: globalColors.backgroundCard,
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
     padding: 10,

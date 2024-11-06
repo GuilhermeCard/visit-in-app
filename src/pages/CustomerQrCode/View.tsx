@@ -1,11 +1,13 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import QRCode from "react-qr-code";
 import { globalColors, globalFonts } from "../../../styles";
-import useCustomerQrCodeViewModel from "./ViewModel";
 import shareQrCodeValue from "../../common/Utils/ShareText";
+import useCustomerQrCodeViewModel from "./ViewModel";
 
 export default function CustomerQrCodeView() {
-  const { qrCodeValue, handleRegenerate } = useCustomerQrCodeViewModel();
+  const { t } = useTranslation();
+  const { qrCodeValue } = useCustomerQrCodeViewModel();
 
   return (
     <View style={styles.container}>
@@ -21,15 +23,9 @@ export default function CustomerQrCodeView() {
           style={styles.checkinButton}
           onPress={() => shareQrCodeValue(qrCodeValue)}
         >
-          <Text style={styles.checkinButtonText}>Share code</Text>
+          <Text style={styles.checkinButtonText}>{t("Share code")}</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.checkinButton}
-          onPress={() => handleRegenerate()}
-        >
-          <Text style={styles.checkinButtonText}>Regenerate code</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );

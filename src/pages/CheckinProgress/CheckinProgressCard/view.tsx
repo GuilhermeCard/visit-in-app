@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { Image, Text, TouchableOpacity, View, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import IconTrophy from "react-native-vector-icons/Entypo";
 import ArrowIcon from "react-native-vector-icons/MaterialIcons";
-import { useNavigation } from "@react-navigation/native";
 import { globalColors } from "../../../../styles";
-import { CheckinProgressCardModel } from "./model";
+import { CheckinProgressCardModel } from "./Model";
 import { useCheckinProgressCardViewModel } from "./viewModel";
-import { useTranslation } from "react-i18next";
 
 export const CheckinProgressCard: React.FC<CheckinProgressCardModel> = ({
   item,

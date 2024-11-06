@@ -1,10 +1,9 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, Linking } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
-import { Action, FriendActivity } from "../Model";
-import { globalColors } from "../../../../styles";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
+import { Image, Linking, StyleSheet, Text, View } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import { globalColors } from "../../../../styles";
+import { Action, FriendActivity } from "../Model";
 
 const getActionColor = (action: Action) =>
   action === "Check-in" ? "#28b8a6" : "#9a9c05";
@@ -23,11 +22,11 @@ export const ActivityCard: React.FC<Props> = ({ item }) => {
           <Text style={styles.name}>{item.name}</Text>
           <Text style={styles.time}>{item.time}</Text>
         </View>
-        <Ionicons
+        {/* <Ionicons
           name={"person-circle-outline"}
           size={30}
           color={globalColors.background}
-        />
+        /> */}
       </View>
       <View style={styles.statusRow}>
         <View style={{ flexDirection: "row", width: "30%" }}>

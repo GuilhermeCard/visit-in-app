@@ -1,5 +1,5 @@
 import { StackActions, useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   StyleSheet,
   Text,
@@ -8,10 +8,12 @@ import {
   View,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { useLoginViewModel } from "./ViewModel";
 
 export default function LoginView() {
+  const { t } = useTranslation();
+  const { passwordVisible, setPasswordVisible } = useLoginViewModel();
   const navigation: any = useNavigation();
-  const [passwordVisible, setPasswordVisible] = useState(false);
 
   function login() {
     navigation.dispatch(StackActions.replace("customerBottomTabNav"));
@@ -19,9 +21,9 @@ export default function LoginView() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome Back</Text>
+      <Text style={styles.title}>{t("Welcome back")}</Text>
       <Text style={styles.subtitle}>
-        Let's get started by filling out the form below.
+        {t("Let's get started by filling out the form below")}
       </Text>
 
       <TextInput
@@ -34,7 +36,7 @@ export default function LoginView() {
       <View style={styles.passwordContainer}>
         <TextInput
           style={{ flexGrow: 1 }}
-          placeholder="Password"
+          placeholder={t("Password")}
           placeholderTextColor="#AAA"
           secureTextEntry={!passwordVisible}
         />
@@ -48,15 +50,15 @@ export default function LoginView() {
       </View>
 
       <TouchableOpacity style={styles.signInButton} onPress={() => login()}>
-        <Text style={styles.signInButtonText}>Sign In</Text>
+        <Text style={styles.signInButtonText}>{t("Sign In")}</Text>
       </TouchableOpacity>
 
       <Text
         style={styles.footerText}
         onPress={() => navigation.navigate("register")}
       >
-        Don't have an account?{" "}
-        <Text style={styles.signUpText}>Sign Up here</Text>
+        {t("Don't have an account?")}{" "}
+        <Text style={styles.signUpText}>{t("Sign Up here")}</Text>
       </Text>
     </View>
   );
