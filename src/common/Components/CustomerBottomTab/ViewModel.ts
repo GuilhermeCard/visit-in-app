@@ -2,7 +2,7 @@ import { BottomTabNavigatorProps } from "./Model";
 import FriendActivityView from "../../../pages/FriendActivity/View";
 import CustomerHomeView from "../../../pages/CustomerHome/View";
 import ClaimedRewardsListView from "../../../pages/ClaimedRewardsList/View";
-import CheckinProgressView from "../../../pages/CheckinProgress/view";
+import CheckinProgressView from "../../../pages/CheckinProgress/View";
 
 export default function useCustomerHomeTabViewModel(initialRoute?: string): BottomTabNavigatorProps {
 

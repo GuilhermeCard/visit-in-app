@@ -11,7 +11,7 @@ import { globalColors, globalFonts } from "../../../styles";
 import { SearchInput } from "../../common/Components/SearchInput/View";
 import { useTranslation } from "react-i18next";
 import { useCheckinProgressViewModel } from "./ViewModel";
-import CheckinProgressCard from "./CheckinProgressCard/view";
+import CheckinProgressCard from "./CheckinProgressCard/View";
 
 const CheckinProgressView = () => {
   const { t } = useTranslation();
