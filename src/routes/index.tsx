@@ -8,6 +8,7 @@ import CustomerRewardsListView from "../pages/CustomerRewardsList/View";
 import ClaimRewardView from "../pages/ClaimReward/View";
 import ClaimedRewardsListView from "../pages/ClaimedRewardsList/View";
 import BottomTabNavigator from "../common/Components/CustomerBottomTab/View";
+import ScannerQRCode from "../pages/ScannerQrCode/View";
 
 export function Routes() {
   const NativeStack = createNativeStackNavigator();
@@ -58,6 +59,11 @@ export function Routes() {
         <NativeStack.Screen
           name={"claimedRewardsList"}
           component={ClaimedRewardsListView}
+          options={{ headerShown: false }}
+        />
+        <NativeStack.Screen
+          name={"scannerQRCode"}
+          component={ScannerQRCode}
           options={{ headerShown: false }}
         />
       </NativeStack.Navigator>

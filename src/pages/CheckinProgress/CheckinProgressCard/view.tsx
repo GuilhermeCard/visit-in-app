@@ -7,7 +7,7 @@ import IconTrophy from "react-native-vector-icons/Entypo";
 import ArrowIcon from "react-native-vector-icons/MaterialIcons";
 import { globalColors } from "../../../../styles";
 import { CheckinProgressCardModel } from "./Model";
-import { useCheckinProgressCardViewModel } from "./ViewModel";
+import { useCheckinProgressCardViewModel } from "./viewModel";
 
 export const CheckinProgressCard: React.FC<CheckinProgressCardModel> = ({
   item,
