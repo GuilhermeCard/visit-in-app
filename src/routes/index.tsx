@@ -1,13 +1,14 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginView from "../pages/Login/View";
-import RegisterView from "../pages/Register/View";
-import CustomerQrCodeView from "../pages/CustomerQrCode/View";
+import BottomTabNavigator from "../common/Components/CustomerBottomTab/View";
 import useCustomerHomeTabViewModel from "../common/Components/CustomerBottomTab/ViewModel";
-import CustomerRewardsListView from "../pages/CustomerRewardsList/View";
 import ClaimRewardView from "../pages/ClaimReward/View";
 import ClaimedRewardsListView from "../pages/ClaimedRewardsList/View";
-import BottomTabNavigator from "../common/Components/CustomerBottomTab/View";
+import CustomerQrCodeView from "../pages/CustomerQrCode/View";
+import CustomerRewardsListView from "../pages/CustomerRewardsList/View";
+import EstablishmentHomeView from "../pages/EstablishmentHome/View";
+import LoginView from "../pages/Login/View";
+import RegisterView from "../pages/Register/View";
 import ScannerQRCode from "../pages/ScannerQrCode/View";
 
 export function Routes() {
@@ -59,6 +60,11 @@ export function Routes() {
         <NativeStack.Screen
           name={"claimedRewardsList"}
           component={ClaimedRewardsListView}
+          options={{ headerShown: false }}
+        />
+        <NativeStack.Screen
+          name={"establishmentHome"}
+          component={EstablishmentHomeView}
           options={{ headerShown: false }}
         />
         <NativeStack.Screen

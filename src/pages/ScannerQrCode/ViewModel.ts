@@ -1,31 +1,24 @@
-import { useState } from "react";
-import { Alert } from "react-native";
-
-type Prop = {
-    type: string;
-    data: string;
-};
+import { useRef, useState } from "react";
 
 export const useScannerQrCodeViewModel = () => {
-    const [scanned, setScanned] = useState(false);
+  const qrCodeLock = useRef(false);
+  const [isAnimationVisible, setIsAnimationVisible] = useState(false);
 
-    const handleBarCodeScanned = ({ type, data }: Prop) => {
-        Alert.alert(
-            `Código ${type} Scaneado`,
-            `Dados: ${data}`,
-            [
-                {
-                    text: 'OK',
-                    onPress: () => setScanned(false),
-                }
-            ],
-            { cancelable: false }
-        );
-    };
+  function handleBarCodeScanned(data: string) {
+    if (data && !qrCodeLock.current) {
+      qrCodeLock.current = true;
+      setTimeout(() => setIsAnimationVisible(true), 500);
+    }
+  }
 
-    return {
-        handleBarCodeScanned,
-        setScanned,
-        scanned
-    };
+  function closeModal() {
+    qrCodeLock.current = false;
+    setIsAnimationVisible(false);
+  }
+
+  return {
+    handleBarCodeScanned,
+    isAnimationVisible,
+    closeModal,
+  };
 };

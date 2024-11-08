@@ -1,11 +1,26 @@
 import { useCameraPermissions } from "expo-camera";
+import { Alert, Linking } from "react-native";
 
+export const useEstablishmentHomeViewModel = (navigation: any) => {
 
-export const useEstablishmentHomeViewModel = () => {
-    const [permission, requestPermission] = useCameraPermissions();
+    var [permission, requestPermission] = useCameraPermissions();
 
-    return {
-        permission,
-        requestPermission
+    const goToQrCodeScan = async () => {
+        permission = await requestPermission()
+
+        if (permission.granted) {
+            navigation.navigate("scannerQRCode");
+        } else {
+            Alert.alert(
+                "Permissão necessária",
+                "Desculpe, precisamos da permissão da câmera para fazer isso funcionar!",
+                [
+                    { text: "Cancelar" },
+                    { text: "Abrir Configurações", onPress: () => Linking.openSettings() }
+                ]
+            );
+        }
     };
+
+    return { goToQrCodeScan };
 };

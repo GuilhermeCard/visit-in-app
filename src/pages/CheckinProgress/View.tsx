@@ -1,22 +1,23 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   FlatList,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import { globalColors, globalFonts } from "../../../styles";
 import { SearchInput } from "../../common/Components/SearchInput/View";
-import { useTranslation } from "react-i18next";
-import CheckinProgressCard from "./CheckinProgressCard/view";
+import CheckinProgressCard from "./CheckinProgressCard/View";
 import { useCheckinProgressViewModel } from "./ViewModel";
 
 const CheckinProgressView = () => {
   const { t } = useTranslation();
 
-  const { arrayData, setSearch, search, filteredCheckinProgress } = useCheckinProgressViewModel();
+  const { arrayData, setSearch, search, filteredCheckinProgress } =
+    useCheckinProgressViewModel();
 
   const [selectedItems, setSelectedItems] = useState([]);
 
@@ -32,7 +33,9 @@ const CheckinProgressView = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Check-ins</Text>
-        <Text style={styles.subTitle}>{t('History of completed check-ins')}</Text>
+        <Text style={styles.subTitle}>
+          {t("History of completed check-ins")}
+        </Text>
       </View>
       <SearchInput value={search} onChange={setSearch} />
       <View>
@@ -70,11 +73,7 @@ const CheckinProgressView = () => {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={filteredCheckinProgress}
-        renderItem={({ item }) => (
-          <CheckinProgressCard
-            item={item}
-          />
-        )}
+        renderItem={({ item }) => <CheckinProgressCard item={item} />}
         keyExtractor={(item) => item.id}
       />
     </View>
