@@ -13,7 +13,12 @@ export default function ScannerQRCode() {
       <CameraView
         style={StyleSheet.absoluteFillObject}
         facing="back"
-        onBarcodeScanned={({ data }) => handleBarCodeScanned(data)}
+        onBarcodeScanned={({ data }) => {
+          !isAnimationVisible &&
+            setTimeout(() => {
+              handleBarCodeScanned(data);
+            }, 300);
+        }}
       />
       <Overlay />
 

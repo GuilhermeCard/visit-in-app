@@ -7,13 +7,15 @@ export const useScannerQrCodeViewModel = () => {
   function handleBarCodeScanned(data: string) {
     if (data && !qrCodeLock.current) {
       qrCodeLock.current = true;
-      setTimeout(() => setIsAnimationVisible(true), 500);
+      setIsAnimationVisible(true);
     }
   }
 
   function closeModal() {
-    qrCodeLock.current = false;
-    setIsAnimationVisible(false);
+    setTimeout(() => {
+      setIsAnimationVisible(false);
+      qrCodeLock.current = false;
+    }, 300);
   }
 
   return {
