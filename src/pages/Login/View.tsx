@@ -1,4 +1,3 @@
-import { StackActions, useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import {
   StyleSheet,
@@ -12,12 +11,14 @@ import { useLoginViewModel } from "./ViewModel";
 
 export default function LoginView() {
   const { t } = useTranslation();
-  const { passwordVisible, setPasswordVisible } = useLoginViewModel();
-  const navigation: any = useNavigation();
-
-  function login() {
-    navigation.dispatch(StackActions.replace("customerBottomTabNav"));
-  }
+  const {
+    navigation,
+    login,
+    passwordVisible,
+    setPasswordVisible,
+    email,
+    setEmail,
+  } = useLoginViewModel();
 
   return (
     <View style={styles.container}>
@@ -31,6 +32,8 @@ export default function LoginView() {
         placeholder="Email"
         placeholderTextColor="#AAA"
         keyboardType="email-address"
+        value={email}
+        onChangeText={setEmail}
       />
 
       <View style={styles.passwordContainer}>
